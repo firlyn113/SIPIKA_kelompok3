@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    background-color: #f4f7f6;
+    min-height: 100vh;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    padding: 20px;
+    text-align: center;
+    background-color: #1a252f;
+    font-size: 1.2rem;
+}
+
+.sidebar a {
+    padding: 15px 20px;
+    color: #ecf0f1;
+    text-decoration: none;
+    border-bottom: 1px solid #34495e;
+    transition: 0.3s;
+    display: block;
+}
+
+.sidebar a:hover, .sidebar a.active {
+    background-color: #34495e;
+    border-left: 4px solid #3498db;
+    color: white;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px 40px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Card & Table Component */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f8f9fa;
+    color: #2c3e50;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.btn-primary { background-color: #3498db; }
+.btn-success { background-color: #2ecc71; }
+.btn-danger { background-color: #e74c3c; }
+.btn-secondary { background-color: #7f8c8d; }
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Workflow Visualizer */
+.workflow-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.workflow-step {
+    text-align: center;
+    flex: 1;
+    position: relative;
+}
+
+.workflow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: -50%;
+    width: 100%;
+    height: 3px;
+    background-color: #ddd;
+    z-index: 1;
+}
+
+.workflow-step.done:not(:last-child)::after {
+    background-color: #2ecc71;
+}
+
+.step-icon {
+    width: 30px;
+    height: 30px;
+    background: #ddd;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+}
+
+.done .step-icon { background: #2ecc71; }
+.active .step-icon { background: #3498db; }
+.step-label { font-size: 0.8rem; font-weight: bold; color: #2c3e50; }
+
+/* AI Recommendation Box */
+.ai-badge {
+    background-color: #e8f4f8;
+    border-left: 4px solid #3498db;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #2c3e50;
+    border-radius: 0 4px 4px 0;
+}

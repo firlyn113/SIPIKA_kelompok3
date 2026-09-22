@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Pengajuan - SIPIKA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>SIPIKA</h2>
+        <a href="dashboard_kajur.html" class="active">Daftar Pengajuan</a>
+        <a href="riwayat_kajur.html">Riwayat Validasi</a>
+        <a href="dashboard_kajur.html" style="margin-top: auto;" onclick="alert('Anda telah logout.')">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Daftar Pengajuan Masuk</h1>
+            <p>Role: <strong>Ketua Jurusan / Sekjur</strong></p>
+        </div>
+
+        <div class="card">
+            <h3>Menunggu Validasi Anda</h3>
+            <p style="margin-bottom: 15px; color: #7f8c8d; font-size: 0.85rem;">
+                *Menampilkan pengajuan izin durasi &ge; 1 hari yang telah disetujui Dosen.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>NIM</th>
+                        <th>Nama Mahasiswa</th>
+                        <th>Alasan</th>
+                        <th>Durasi</th>
+                        <th>Status Workflow</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dummy Data 1: > 1 Hari -->
+                    <tr>
+                        <td>220101001</td>
+                        <td>Afan Afriansyah</td>
+                        <td>Sakit (Rawat Inap)</td>
+                        <td>3 Hari</td>
+                        <td><span style="color: #d35400; font-weight: bold;">Menunggu Ketua Jurusan / Sekjur</span></td>
+                        <td><a href="detail_kajur.html" class="btn btn-primary">Lihat Detail</a></td>
+                    </tr>
+                    <!-- Dummy Data 2: = 1 Hari -->
+                    <tr>
+                        <td>220101002</td>
+                        <td>Budi Santoso</td>
+                        <td>Acara Keluarga</td>
+                        <td>1 Hari</td>
+                        <td><span style="color: #d35400; font-weight: bold;">Menunggu Ketua Jurusan / Sekjur</span></td>
+                        <td><a href="detail_kajur.html" class="btn btn-primary">Lihat Detail</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

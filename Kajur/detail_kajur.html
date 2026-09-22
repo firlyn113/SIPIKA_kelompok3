@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Pengajuan - SIPIKA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>SIPIKA</h2>
+        <a href="dashboard_kajur.html">Daftar Pengajuan</a>
+        <a href="riwayat_kajur.html">Riwayat Validasi</a>
+        <a href="dashboard_kajur.html" style="margin-top: auto;" onclick="alert('Anda telah logout.')">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Detail Pengajuan Izin</h1>
+            <p>Role: <strong>Ketua Jurusan / Sekjur</strong></p>
+        </div>
+
+        <div class="card">
+            <!-- Asisten AI Recommendation -->
+            <div class="ai-badge">
+                <strong>🤖 Rekomendasi Asisten AI:</strong><br>
+                Sistem mendeteksi lampiran Surat Keterangan Dokter yang valid. Catatan presensi mahasiswa di atas 90%. Direkomendasikan untuk <strong>Disetujui</strong>.
+            </div>
+
+            <h3 style="margin-bottom: 15px;">Informasi Mahasiswa</h3>
+            <p style="margin-bottom: 8px;"><strong>Nama:</strong> Afan Afriansyah</p>
+            <p style="margin-bottom: 8px;"><strong>NIM:</strong> 220101001</p>
+            <p style="margin-bottom: 8px;"><strong>Durasi:</strong> 3 Hari (16 April 2026 - 18 April 2026)</p>
+            <p style="margin-bottom: 8px;"><strong>Alasan:</strong> Sakit (Rawat Inap)</p>
+            <p style="margin-bottom: 8px;"><strong>Lampiran:</strong> <a href="detail_kajur.html" onclick="alert('Membuka file surat_dokter.pdf')" style="color: #3498db;">surat_dokter.pdf</a></p>
+
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
+
+            <h3 style="margin-bottom: 10px;">Status Visual Workflow (> 1 Hari)</h3>
+            
+            <!-- Workflow Diagram > 1 Hari -->
+            <div class="workflow-container">
+                <div class="workflow-step done">
+                    <div class="step-icon">✓</div>
+                    <div class="step-label">Mahasiswa<br>(Diajukan)</div>
+                </div>
+                <div class="workflow-step done">
+                    <div class="step-icon">✓</div>
+                    <div class="step-label">Dosen<br>(Disetujui)</div>
+                </div>
+                <div class="workflow-step active">
+                    <div class="step-icon">3</div>
+                    <div class="step-label">Ketua Jurusan / Sekjur<br>(Menunggu Validasi)</div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-icon">4</div>
+                    <div class="step-label">BAAK<br>(Menunggu)</div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-icon">5</div>
+                    <div class="step-label">Admin Jurusan<br>(Menunggu)</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px; text-align: right; display: flex; gap: 10px; justify-content: flex-end;">
+                <a href="dashboard_kajur.html" class="btn btn-secondary">Kembali</a>
+                <a href="riwayat_kajur.html" class="btn btn-danger" onclick="alert('Pengajuan Ditolak.')">Tolak</a>
+                <a href="riwayat_kajur.html" class="btn btn-success" onclick="alert('Pengajuan Disetujui! Pengajuan diteruskan ke BAAK.')">Setujui</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

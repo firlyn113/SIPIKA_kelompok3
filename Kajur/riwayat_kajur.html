@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Validasi - SIPIKA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>SIPIKA</h2>
+        <a href="dashboard_kajur.html">Daftar Pengajuan</a>
+        <a href="riwayat_kajur.html" class="active">Riwayat Validasi</a>
+        <a href="dashboard_kajur.html" style="margin-top: auto;" onclick="alert('Anda telah logout.')">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Riwayat Validasi</h1>
+            <p>Role: <strong>Ketua Jurusan / Sekjur</strong></p>
+        </div>
+
+        <div class="card">
+            <h3>Daftar Pengajuan yang Telah Divalidasi</h3>
+            <p style="margin-bottom: 15px; color: #7f8c8d; font-size: 0.85rem;">
+                *Menampilkan hasil keputusan yang pernah diberikan oleh Ketua Jurusan / Sekjur.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>NIM</th>
+                        <th>Nama Mahasiswa</th>
+                        <th>Durasi</th>
+                        <th>Keputusan Anda</th>
+                        <th>Posisi Saat Ini (Workflow)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dummy Data 1: = 1 Hari -->
+                    <tr>
+                        <td>220102015</td>
+                        <td>Siti Aminah</td>
+                        <td>1 Hari</td>
+                        <td><span style="color: #2ecc71; font-weight: bold;">Disetujui</span></td>
+                        <td>Admin Jurusan (Selesai)</td>
+                    </tr>
+                    <!-- Dummy Data 2: > 1 Hari -->
+                    <tr>
+                        <td>220101088</td>
+                        <td>Reza Rahardian</td>
+                        <td>4 Hari</td>
+                        <td><span style="color: #2ecc71; font-weight: bold;">Disetujui</span></td>
+                        <td>Menunggu BAAK</td>
+                    </tr>
+                    <!-- Dummy Data 3: Ditolak -->
+                    <tr>
+                        <td>220101045</td>
+                        <td>Deni Saputra</td>
+                        <td>2 Hari</td>
+                        <td><span style="color: #e74c3c; font-weight: bold;">Ditolak</span></td>
+                        <td>Selesai (Ditolak)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
