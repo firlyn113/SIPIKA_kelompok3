@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard BAAK - SIPIKA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>SIPIKA</h2>
+        <p style="text-align:center; font-size:14px; margin-bottom:20px; color:#bdc3c7;">Role: BAAK</p>
+        <!-- Navigasi disesuaikan -->
+        <a href="dashboard.html" class="active">Daftar Validasi</a>
+        <a href="riwayat.html">Riwayat Validasi</a>
+        <a href="#" style="margin-top: 50px; color: #e74c3c;">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h3>Daftar Antrean Validasi BAAK</h3>
+            <div>Selamat datang, Petugas BAAK</div>
+        </div>
+
+        <div class="card">
+            <h4>Membutuhkan Persetujuan (Durasi > 1 Hari)</h4>
+            <p style="font-size: 14px; color: #7f8c8d; margin-bottom: 15px;">*Hanya menampilkan pengajuan yang telah disetujui Dosen dan Ketua Jurusan / Sekjur</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>NIM</th>
+                        <th>Nama Mahasiswa</th>
+                        <th>Durasi</th>
+                        <th>Alasan</th>
+                        <th>Status Dosen</th>
+                        <th>Status Kajur/Sekjur</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dummy Data 1 -->
+                    <tr>
+                        <td>2021001</td>
+                        <td>Andi Saputra</td>
+                        <td>3 Hari</td>
+                        <td>Sakit (Rawat Inap)</td>
+                        <td><span class="badge bg-success">Disetujui</span></td>
+                        <td><span class="badge bg-success">Disetujui</span></td>
+                        <td>
+                            <!-- Link ke DetailValidasi.html -->
+                            <a href="DetailValidasi.html" class="btn btn-primary">Lihat Detail & Validasi</a>
+                        </td>
+                    </tr>
+                    <!-- Dummy Data 2 -->
+                    <tr>
+                        <td>2021002</td>
+                        <td>Budi Santoso</td>
+                        <td>2 Hari</td>
+                        <td>Acara Keluarga</td>
+                        <td><span class="badge bg-success">Disetujui</span></td>
+                        <td><span class="badge bg-success">Disetujui</span></td>
+                        <td>
+                            <!-- Link ke DetailValidasi.html -->
+                            <a href="DetailValidasi.html" class="btn btn-primary">Lihat Detail & Validasi</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

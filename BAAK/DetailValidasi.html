@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Pengajuan BAAK - SIPIKA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>SIPIKA</h2>
+        <p style="text-align:center; font-size:14px; margin-bottom:20px; color:#bdc3c7;">Role: BAAK</p>
+        <!-- Navigasi disesuaikan -->
+        <a href="dashboard.html" class="active">Daftar Validasi</a>
+        <a href="riwayat.html">Riwayat Validasi</a>
+        <a href="#" style="margin-top: 50px; color: #e74c3c;">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h3>Detail Pengajuan Izin Ketidakhadiran</h3>
+            <!-- Link kembali ke dashboard.html -->
+            <a href="dashboard.html" class="btn btn-secondary">Kembali</a>
+        </div>
+
+        <!-- Visualisasi Workflow Sequential untuk > 1 Hari -->
+        <div class="card" style="margin-bottom: 20px;">
+            <h4>Workflow Pengajuan (> 1 Hari)</h4>
+            <div class="timeline">
+                <div class="timeline-step step-done">
+                    <div class="timeline-icon">✓</div>
+                    <div class="step-text">Mahasiswa</div>
+                    <div class="step-subtext">Mengajukan</div>
+                </div>
+                <div class="timeline-step step-done">
+                    <div class="timeline-icon">✓</div>
+                    <div class="step-text">Dosen</div>
+                    <div class="step-subtext">Disetujui</div>
+                </div>
+                <div class="timeline-step step-done">
+                    <div class="timeline-icon">✓</div>
+                    <div class="step-text">Ketua Jurusan / Sekjur</div>
+                    <div class="step-subtext">Disetujui</div>
+                </div>
+                <div class="timeline-step step-active">
+                    <div class="timeline-icon">!</div>
+                    <div class="step-text">BAAK</div>
+                    <div class="step-subtext">Menunggu Validasi</div>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-icon">...</div>
+                    <div class="step-text">Admin Jurusan</div>
+                    <div class="step-subtext">Belum Memproses</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h4 style="margin-bottom: 15px;">Informasi Mahasiswa</h4>
+            <table style="width: 50%; margin-bottom: 20px; margin-top:0;">
+                <tr>
+                    <td style="font-weight: bold; border:none; padding:5px 0;">NIM</td>
+                    <td style="border:none; padding:5px 0;">: 2021001</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; border:none; padding:5px 0;">Nama</td>
+                    <td style="border:none; padding:5px 0;">: Andi Saputra</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; border:none; padding:5px 0;">Durasi Izin</td>
+                    <td style="border:none; padding:5px 0;">: 3 Hari (15 Okt - 17 Okt 2026)</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; border:none; padding:5px 0;">Alasan</td>
+                    <td style="border:none; padding:5px 0;">: Sakit (Rawat Inap)</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; border:none; padding:5px 0;">Lampiran</td>
+                    <td style="border:none; padding:5px 0;">: <a href="#">surat_sakit_andi.pdf</a></td>
+                </tr>
+            </table>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+            <h4>Tindakan BAAK</h4>
+            <p style="font-size: 14px; margin-bottom: 15px;">Silakan validasi pengajuan ini. Keputusan Anda akan diteruskan ke Admin Jurusan sebagai tahap akhir.</p>
+            
+            <!-- Redirect ke dashboard.html setelah alert -->
+            <button class="btn btn-success" onclick="alert('Pengajuan Disetujui. Diteruskan ke Admin Jurusan.'); window.location.href='dashboard.html'">Setujui Pengajuan</button>
+            <button class="btn btn-danger" onclick="alert('Pengajuan Ditolak.'); window.location.href='dashboard.html'">Tolak Pengajuan</button>
+        </div>
+    </div>
+
+</body>
+</html>
