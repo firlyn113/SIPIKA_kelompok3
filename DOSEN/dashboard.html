@@ -1,76 +1,98 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Dosen - SIPIKA</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Dosen — SIPIKA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+<div class="app">
+  <div class="scrim"></div>
+  <aside class="sidebar">
+    <div class="brand">
+      <strong>SIPIKA</strong>
+      <span>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</span>
+    </div>
+    <div class="role-chip">
+      <span class="name">Dr. Budi Santoso, M.Kom</span>
+      <span class="role">Dosen</span>
+    </div>
+    <ul class="nav-list">
+      <li><a href="dashboard.html" data-page="dashboard"><span class="icon">📊</span> Dashboard</a></li>
+      <li><a href="pengajuan.html" data-page="pengajuan"><span class="icon">📋</span> Pengajuan Perlu Validasi</a></li>
+      <li><a href="riwayat.html" data-page="riwayat"><span class="icon">🕒</span> Riwayat Validasi</a></li>
+      <hr class="nav-divider">
+      <li><a href="#"><span class="icon">👤</span> Profil</a></li>
+      <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
+    </ul>
+  </aside>
 
-    <header>
-        <h1>SIPIKA</h1>
-        <p>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</p>
-    </header>
-
-    <nav>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="pengajuan.html">Daftar Pengajuan</a>
-    </nav>
-
-    <main class="container">
-
-        <h2>Dashboard Dosen</h2>
-
-    <div class="cards">
-        <a href="menunggu.html" class="card-link">
-            <div class="card">
-                <h3>Menunggu Validasi</h3>
-                <p>2</p>
-            </div>
-        </a>
-
-            <a href="disetujui.html" class="card-link">
-            <div class="card">
-                <h3>Disetujui</h3>
-                <p>2</p>
-            </div>
-        </a>
-
-            <a href="ditolak.html" class="card-link">
-            <div class="card">
-                <h3>Ditolak</h3>
-                <p>2</p>
-            </div>
-        </a>
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <button class="hamburger" aria-label="Buka menu">☰</button>
+        <span class="crumb">SIPIKA / Dosen / Dashboard</span>
+      </div>
+      <div class="crumb">Dr. Budi Santoso, M.Kom</div>
     </div>
 
-        <h3>Pengajuan Terbaru</h3>
+    <div class="content">
+      <div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <div class="card" style="padding: 1.5rem; text-align: center; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+          <h3 style="font-size: 1rem; color: #4b5563; margin-bottom: 0.5rem; font-weight: 500;">Total Pengajuan Masuk</h3>
+          <p style="font-size: 2rem; font-weight: 700; margin: 0; color: #111827;">6</p>
+        </div>
+        <div class="card" style="padding: 1.5rem; text-align: center; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+          <h3 style="font-size: 1rem; color: #4b5563; margin-bottom: 0.5rem; font-weight: 500;">Menunggu Validasi</h3>
+          <p style="font-size: 2rem; font-weight: 700; margin: 0; color: var(--warning-color, #eab308);">2</p>
+        </div>
+        <div class="card" style="padding: 1.5rem; text-align: center; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+          <h3 style="font-size: 1rem; color: #4b5563; margin-bottom: 0.5rem; font-weight: 500;">Sudah Divalidasi</h3>
+          <p style="font-size: 2rem; font-weight: 700; margin: 0; color: var(--success-color, #22c55e);">4</p>
+        </div>
+      </div>
 
-        <table>
-            <tr>
-                <th>Nama</th>
+      <div class="panel">
+        <h2 style="margin-bottom: 1rem;">Pengajuan Terbaru</h2>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
                 <th>NIM</th>
+                <th>Nama</th>
+                <th>Jenis Izin</th>
                 <th>Durasi</th>
                 <th>Status</th>
-            </tr>
-
-            <tr>
-                <td>Wanda</td>
-                <td>230102</td>
-                <td>1 Hari</td>
-                <td>Menunggu</td>
-            </tr>
-
-            <tr>
-                <td>Andi</td>
-                <td>230103</td>
-                <td>3 Hari</td>
-                <td>Menunggu</td>
-            </tr>
-        </table>
-
-    </main>
-
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>250115042</td>
+                <td>Firly Nurrohman</td>
+                <td>Sakit</td>
+                <td>= 1 hari</td>
+                <td><span class="badge badge-warning">Menunggu Validasi Dosen</span></td>
+                <td><a href="detail-pengajuan.html" class="btn btn-sm btn-primary">Lihat Detail</a></td>
+              </tr>
+              <tr>
+                <td>250122015</td>
+                <td>Salsabila Putri</td>
+                <td>Izin Pulang Cepat</td>
+                <td>&lt; 1 hari</td>
+                <td><span class="badge badge-warning">Menunggu Validasi Dosen</span></td>
+                <td><a href="detail-pengajuan.html" class="btn btn-sm btn-primary">Lihat Detail</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
+  </div>
+</div>
+<script src="../assets/js/script.js"></script>
 </body>
 </html>

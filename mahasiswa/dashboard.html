@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Mahasiswa — SIPIKA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="app">
+  <div class="scrim"></div>
+  <aside class="sidebar">
+    <div class="brand">
+      <strong>SIPIKA</strong>
+      <span>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</span>
+    </div>
+    <div class="role-chip">
+      <span class="name">Firly Nurrohman</span>
+      <span class="role">Mahasiswa</span>
+      <span style="font-size: 0.75rem; color: #a1a1aa; display: block; margin-top: 4px;">250115042 - D4 Teknologi Rekayasa Perangkat Lunak</span>
+    </div>
+    <ul class="nav-list">
+      <li><a href="dashboard.html" data-page="dashboard.html"><span class="icon">🏠</span> Dashboard</a></li>
+      <li><a href="pengajuan.html" data-page="pengajuan.html"><span class="icon">➕</span> Ajukan Izin</a></li>
+      <li><a href="riwayat.html" data-page="riwayat.html"><span class="icon">📜</span> Riwayat Pengajuan</a></li>
+      <hr class="nav-divider">
+      <li><a href="#"><span class="icon">👤</span> Profil</a></li>
+      <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
+    </ul>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <button class="hamburger" aria-label="Buka menu">☰</button>
+        <span class="crumb">SIPIKA / Mahasiswa / Dashboard</span>
+      </div>
+      <div class="crumb">Firly Nurrohman</div>
+    </div>
+
+    <div class="content">
+      <h1>Dashboard Mahasiswa</h1>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <div class="card" style="padding: 1.5rem; text-align: center;">
+          <h3>Total Pengajuan</h3>
+          <p style="font-size: 2.5rem; font-weight: 700; color: #3b82f6;">3</p>
+        </div>
+        <div class="card" style="padding: 1.5rem; text-align: center;">
+          <h3>Sedang Diproses</h3>
+          <p style="font-size: 2.5rem; font-weight: 700; color: #f59e0b;">1</p>
+        </div>
+        <div class="card" style="padding: 1.5rem; text-align: center;">
+          <h3>Disetujui</h3>
+          <p style="font-size: 2.5rem; font-weight: 700; color: #10b981;">2</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom: 2rem;">
+        <h2>Tindakan Cepat</h2>
+        <p>Ajukan perizinan ketidakhadiran baru dengan mudah melalui formulir online.</p>
+        <a href="pengajuan.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Buat Pengajuan Baru</a>
+      </div>
+
+      <div class="card" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
+        <h2>Aturan Alur Validasi Perizinan</h2>
+        <ul style="margin-top: 1rem; padding-left: 1.5rem; line-height: 1.6;">
+          <li style="margin-bottom: 0.5rem;"><strong>Durasi &lt; 1 hari (Izin Jam Kuliah):</strong> Mahasiswa &rarr; Validasi Dosen &rarr; Cetak Surat (Admin Jurusan)</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Durasi = 1 hari:</strong> Mahasiswa &rarr; Validasi Dosen &rarr; Validasi Ketua Jurusan / Sekjur &rarr; Cetak Surat (Admin Jurusan)</li>
+          <li><strong>Durasi &gt; 1 hari:</strong> Mahasiswa &rarr; Validasi Dosen &rarr; Validasi Ketua Jurusan / Sekjur &rarr; Validasi BAAK &rarr; Cetak Surat (Admin Jurusan)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
+  </div>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

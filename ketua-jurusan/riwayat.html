@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard BAAK — SIPIKA</title>
+  <title>Riwayat Validasi — SIPIKA</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
@@ -16,12 +16,12 @@
       <span>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</span>
     </div>
     <div class="role-chip">
-      <span class="name">Staf BAAK</span>
-      <span class="role">BAAK</span>
+      <span class="name">Sekjur TRPL</span>
+      <span class="role">Ketua Jurusan / Sekjur</span>
     </div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard"><span class="icon">🏠</span> Dashboard</a></li>
-      <li><a href="riwayat.html" data-page="riwayat"><span class="icon">📄</span> Riwayat Validasi</a></li>
+      <li><a href="dashboard.html" data-page="dashboard.html"><span class="icon">📊</span> Dashboard</a></li>
+      <li><a href="riwayat.html" data-page="riwayat.html"><span class="icon">🕒</span> Riwayat Validasi</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
@@ -32,46 +32,52 @@
     <div class="topbar">
       <div>
         <button class="hamburger" aria-label="Buka menu">☰</button>
-        <span class="crumb">SIPIKA / BAAK / Dashboard</span>
+        <span class="crumb">SIPIKA / Ketua Jurusan / Sekjur / Riwayat Validasi</span>
       </div>
-      <div class="crumb">Staf BAAK</div>
+      <div class="crumb">Sekjur TRPL</div>
     </div>
 
     <div class="content">
+      <p class="hint">Menampilkan hasil keputusan yang pernah diberikan oleh Ketua Jurusan / Sekjur.</p>
+      
       <div class="panel">
-        <p class="text-secondary" style="margin-bottom: 1rem;">Menampilkan pengajuan izin durasi > 1 hari yang telah disetujui Dosen dan Ketua Jurusan / Sekjur.</p>
-        <div class="panel-header">
-          <h2>Membutuhkan Persetujuan BAAK (Durasi > 1 Hari)</h2>
-        </div>
-        <div class="table-responsive">
+        <div class="panel-header">Riwayat Keputusan</div>
+        <div class="panel-body table-responsive">
           <table class="table">
             <thead>
               <tr>
                 <th>NIM</th>
                 <th>Nama Mahasiswa</th>
                 <th>Durasi</th>
-                <th>Alasan</th>
-                <th>Status Dosen</th>
-                <th>Status Ketua Jurusan / Sekjur</th>
-                <th>Aksi</th>
+                <th>Keputusan Anda</th>
+                <th>Posisi Saat Ini (Workflow)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>250315778</td>
                 <td>Rahull</td>
-                <td>2 Hari</td>
-                <td>Izin Keperluan Keluarga</td>
+                <td>&gt; 1 Hari</td>
                 <td><span class="badge badge-success">Disetujui</span></td>
+                <td>Disetujui (Selesai)</td>
+              </tr>
+              <tr>
+                <td>250133090</td>
+                <td>Ahmad Fauzan</td>
+                <td>&gt; 1 Hari</td>
                 <td><span class="badge badge-success">Disetujui</span></td>
-                <td>
-                  <a href="detail-pengajuan.html" class="btn btn-sm btn-primary">Lihat Detail</a>
-                </td>
+                <td>Disetujui (Selesai)</td>
+              </tr>
+              <tr>
+                <td>250144067</td>
+                <td>Dewi Anggraini</td>
+                <td>= 1 Hari</td>
+                <td><span class="badge badge-danger">Ditolak</span></td>
+                <td>Selesai (Ditolak)</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="text-secondary" style="margin-top: 1rem;"><em>Saat ini tidak ada pengajuan yang menunggu validasi BAAK. (Data di atas hanya contoh historis)</em></p>
       </div>
     </div>
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>

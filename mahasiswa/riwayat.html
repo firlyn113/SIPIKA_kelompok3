@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riwayat Pengajuan — SIPIKA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; align-items: center; justify-content: center; }
+    .modal.active { display: flex; }
+    .modal-content { background: white; padding: 2rem; border-radius: 8px; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color:#64748b; }
+    .modal-close:hover { color:#0f172a; }
+    
+    .badge { padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; display: inline-block;}
+    .badge-menunggu { background: #fef3c7; color: #b45309; }
+    .badge-disetujui { background: #d1fae5; color: #047857; }
+    .badge-ditolak { background: #fee2e2; color: #b91c1c; }
+    
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border: 1px solid #e2e8f0; padding: 0.75rem; text-align: left; font-size: 0.875rem; }
+    th { background: #f8fafc; font-weight: 600; }
+    
+    .timeline { position: relative; padding-left: 2rem; margin-top: 1rem; }
+    .timeline-item { position: relative; padding-bottom: 1.5rem; }
+    .timeline-item::before { content: ''; position: absolute; left: -1rem; top: 0.25rem; width: 12px; height: 12px; border-radius: 50%; background: #cbd5e1; }
+    .timeline-item::after { content: ''; position: absolute; left: -0.65rem; top: 1rem; bottom: 0; width: 2px; background: #e2e8f0; }
+    .timeline-item:last-child::after { display: none; }
+    .timeline-item.done::before { background: #10b981; }
+    .timeline-item.active::before { background: #3b82f6; box-shadow: 0 0 0 3px #bfdbfe; }
+    .timeline-title { font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; }
+    .timeline-time { font-size: 0.75rem; color: #64748b; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="scrim"></div>
+  <aside class="sidebar">
+    <div class="brand">
+      <strong>SIPIKA</strong>
+      <span>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</span>
+    </div>
+    <div class="role-chip">
+      <span class="name">Firly Nurrohman</span>
+      <span class="role">Mahasiswa</span>
+    </div>
+    <ul class="nav-list">
+      <li><a href="dashboard.html" data-page="dashboard.html"><span class="icon">🏠</span> Dashboard</a></li>
+      <li><a href="pengajuan.html" data-page="pengajuan.html"><span class="icon">➕</span> Ajukan Izin</a></li>
+      <li><a href="riwayat.html" data-page="riwayat.html"><span class="icon">📜</span> Riwayat Pengajuan</a></li>
+      <hr class="nav-divider">
+      <li><a href="#"><span class="icon">👤</span> Profil</a></li>
+      <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
+    </ul>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <button class="hamburger" aria-label="Buka menu">☰</button>
+        <span class="crumb">SIPIKA / Mahasiswa / Riwayat Pengajuan</span>
+      </div>
+      <div class="crumb">Firly Nurrohman</div>
+    </div>
+
+    <div class="content">
+      <div class="card">
+        <h2>Riwayat Pengajuan Perizinan</h2>
+        
+        <div style="overflow-x: auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Kode Izin</th>
+                <th>Jenis</th>
+                <th>Tanggal</th>
+                <th>Durasi</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>SPK-2026-001</td>
+                <td>Sakit</td>
+                <td>22/09/2026</td>
+                <td>= 1 Hari</td>
+                <td><span class="badge badge-menunggu">Menunggu Admin Jurusan</span></td>
+                <td><button class="btn btn-primary btn-detail" data-id="SPK-2026-001" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Detail Progress</button></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>SPK-2026-002</td>
+                <td>Izin Keperluan Keluarga</td>
+                <td>13/09/2026</td>
+                <td>&gt; 1 Hari (2 Hari)</td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
+                <td><button class="btn btn-primary btn-detail" data-id="SPK-2026-002" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Detail Progress</button></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>SPK-2026-003</td>
+                <td>Izin Pulang Cepat</td>
+                <td>18/09/2026</td>
+                <td>&lt; 1 Hari</td>
+                <td><span class="badge badge-menunggu">Menunggu Admin Jurusan</span></td>
+                <td><button class="btn btn-primary btn-detail" data-id="SPK-2026-003" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Detail Progress</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
+  </div>
+</div>
+
+<div class="modal" id="detail-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modal-title" style="margin:0;">Detail Progress Tiket</h3>
+      <button class="modal-close" id="btn-close-modal">&times;</button>
+    </div>
+    <div id="modal-body">
+      <!-- Injected by script -->
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/script.js"></script>
+<script src="mahasiswa-script.js"></script>
+</body>
+</html>

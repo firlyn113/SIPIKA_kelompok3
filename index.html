@@ -1,62 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIPIKA — Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</h1>
-    </header>
-   
-    <main>
-        <hr>
-        <section>
-        <nav>
-            <a href="index.html">Beranda</a> | 
-            <a href="unggah.html">Unggah Formulir</a> | 
-            <a href="rekap.html">Dashboard Rekap</a>
-        </nav>
-        <hr>
-        </section>
 
-        <h2>Selamat Datang Di Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</h2>
-        <p>Sistem ini digunakan untuk mengajukan perizinan
-            tidak mengikuti perkuliahan.
-        </p>
+  <div class="landing">
+    <div class="landing-card">
+      <h1>SIPIKA</h1>
+      <p class="subtitle">Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</p>
+      <p class="desc">
+        Sistem informasi untuk mendigitalisasi proses pengajuan, validasi, monitoring,
+        dan rekap perizinan ketidakhadiran mahasiswa di lingkungan
+        <strong>Politeknik Negeri Cilacap</strong>.
+      </p>
 
-        <footer style="text-align: center;">
-        Proyek matkul Pweb <a href="https://github.com/firlyn113">@Firlyajhh</a>
-        </footer>
+      <h3 style="margin-bottom: 12px; font-size: .9rem; color: var(--muted);">Masuk sebagai:</h3>
+      <div class="role-grid">
+        <a href="mahasiswa/dashboard.html">
+          <span class="role-icon">🎓</span>
+          <span>Mahasiswa</span>
+        </a>
+        <a href="dosen/dashboard.html">
+          <span class="role-icon">👨‍🏫</span>
+          <span>Dosen</span>
+        </a>
+        <a href="ketua-jurusan/dashboard.html">
+          <span class="role-icon">🏛️</span>
+          <span>Ketua Jurusan / Sekjur</span>
+        </a>
+        <a href="baak/dashboard.html">
+          <span class="role-icon">📋</span>
+          <span>BAAK</span>
+        </a>
+        <a href="admin-jurusan/dashboard.html" style="grid-column: 1 / -1;">
+          <span class="role-icon">⚙️</span>
+          <span>Admin Jurusan</span>
+        </a>
+      </div>
 
-    </main>
-    
-</select>
+      <p style="font-size: .76rem; color: var(--muted); margin: 0;">
+        Prototype statis untuk keperluan demonstrasi · Belum terhubung ke backend
+      </p>
+    </div>
+
+    <p class="landing-footer">
+      SIPIKA · Politeknik Negeri Cilacap · Kelompok 3 — D4 TRPL 2B · © 2026
+    </p>
+  </div>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Untuk pilihan
- <label for="kota">Pilih Kota:</label>
-    <select id="kota" name="kota">
-    <option value="jakarta">Jakarta</option>
-    <option value="surabaya">Surabaya</option>
-    <option value="bandung">Bandung</option>
-    <option value="semarang">Semarang</option> -->

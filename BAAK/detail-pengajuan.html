@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Pengajuan BAAK — SIPIKA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="app">
+  <div class="scrim"></div>
+  <aside class="sidebar">
+    <div class="brand">
+      <strong>SIPIKA</strong>
+      <span>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</span>
+    </div>
+    <div class="role-chip">
+      <span class="name">Staf BAAK</span>
+      <span class="role">BAAK</span>
+    </div>
+    <ul class="nav-list">
+      <li><a href="dashboard.html" data-page="dashboard"><span class="icon">🏠</span> Dashboard</a></li>
+      <li><a href="riwayat.html" data-page="riwayat"><span class="icon">📄</span> Riwayat Validasi</a></li>
+      <hr class="nav-divider">
+      <li><a href="#"><span class="icon">👤</span> Profil</a></li>
+      <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
+    </ul>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <button class="hamburger" aria-label="Buka menu">☰</button>
+        <span class="crumb">SIPIKA / BAAK / Detail Pengajuan</span>
+      </div>
+      <div class="crumb">Staf BAAK</div>
+    </div>
+
+    <div class="content">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Detail Pengajuan - Rahull</h2>
+        </div>
+        
+        <div class="stepper" style="display: flex; gap: 1rem; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 1rem; align-items: center;">
+          <div class="step step-done" style="opacity: 0.6">Mahasiswa</div>
+          <div>→</div>
+          <div class="step step-done" style="opacity: 0.6">Dosen</div>
+          <div>→</div>
+          <div class="step step-done" style="opacity: 0.6">Ketua Jurusan / Sekjur</div>
+          <div>→</div>
+          <div class="step step-active" style="font-weight: bold; color: var(--primary)">BAAK</div>
+          <div>→</div>
+          <div class="step step-pending" style="opacity: 0.4">Admin Jurusan</div>
+        </div>
+
+        <table class="table" style="margin-bottom: 2rem;">
+          <tbody>
+            <tr>
+              <th style="width: 200px">NIM</th>
+              <td>250315778</td>
+            </tr>
+            <tr>
+              <th>Nama Mahasiswa</th>
+              <td>Rahull</td>
+            </tr>
+            <tr>
+              <th>Durasi</th>
+              <td>2 Hari</td>
+            </tr>
+            <tr>
+              <th>Alasan</th>
+              <td>Izin Keperluan Keluarga</td>
+            </tr>
+            <tr>
+              <th>Lampiran</th>
+              <td><a href="#" class="text-primary">Surat Izin Keluarga.pdf</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background: var(--surface); padding: 1.5rem; border: 1px solid var(--border); border-radius: 8px;">
+          <h3 style="margin-bottom: 1rem;">Tindakan BAAK</h3>
+          <p class="text-secondary" style="margin-bottom: 1.5rem;">Keputusan Anda akan diteruskan ke Admin Jurusan sebagai tahap akhir.</p>
+          
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="dashboard.html" class="btn btn-secondary">Kembali</a>
+            <button class="btn btn-success" onclick="alert('Pengajuan Disetujui. Diteruskan ke Admin Jurusan.')">Setujui Pengajuan</button>
+            <button class="btn btn-danger" onclick="alert('Pengajuan Ditolak.')">Tolak Pengajuan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
+  </div>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Pengajuan — SIPIKA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .info-grid { display: grid; grid-template-columns: 150px 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+    .info-label { font-weight: 600; color: var(--text-muted); }
+    .ai-box { background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; }
+    .ai-box h4 { margin-top: 0; color: #166534; display: flex; align-items: center; gap: 0.5rem; }
+    .ai-note { font-size: 0.85rem; color: #15803d; margin-top: 0.5rem; font-style: italic; }
+    .stepper { display: flex; justify-content: space-between; margin: 2rem 0; position: relative; }
+    .stepper::before { content: ''; position: absolute; top: 15px; left: 0; right: 0; height: 2px; background: #e5e7eb; z-index: 0; }
+    .step { position: relative; z-index: 1; text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+    .step-icon { width: 32px; height: 32px; border-radius: 50%; background: #e5e7eb; color: #6b7280; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid #fff; }
+    .step.done .step-icon { background: var(--success-color, #22c55e); color: #fff; border-color: var(--success-color, #22c55e); }
+    .step.active .step-icon { background: var(--primary-color, #2563eb); color: #fff; box-shadow: 0 0 0 3px rgba(37,99,235,0.2); }
+    .step-label { font-size: 0.85rem; font-weight: 500; color: #4b5563; }
+    .step.done .step-label { color: #111827; }
+    .step.active .step-label { color: var(--primary-color, #2563eb); font-weight: 600; }
+    .actions { display: flex; gap: 1rem; margin-top: 2rem; justify-content: flex-end; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="scrim"></div>
+  <aside class="sidebar">
+    <div class="brand">
+      <strong>SIPIKA</strong>
+      <span>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</span>
+    </div>
+    <div class="role-chip">
+      <span class="name">Dr. Budi Santoso, M.Kom</span>
+      <span class="role">Dosen</span>
+    </div>
+    <ul class="nav-list">
+      <li><a href="dashboard.html" data-page="dashboard"><span class="icon">📊</span> Dashboard</a></li>
+      <li><a href="pengajuan.html" data-page="pengajuan"><span class="icon">📋</span> Pengajuan Perlu Validasi</a></li>
+      <li><a href="riwayat.html" data-page="riwayat"><span class="icon">🕒</span> Riwayat Validasi</a></li>
+      <hr class="nav-divider">
+      <li><a href="#"><span class="icon">👤</span> Profil</a></li>
+      <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
+    </ul>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <button class="hamburger" aria-label="Buka menu">☰</button>
+        <span class="crumb">SIPIKA / Dosen / Detail Pengajuan</span>
+      </div>
+      <div class="crumb">Dr. Budi Santoso, M.Kom</div>
+    </div>
+
+    <div class="content">
+      <div class="panel">
+        <h2 style="margin-bottom: 1.5rem;">Detail Pengajuan Mahasiswa</h2>
+        
+        <div class="stepper">
+          <div class="step done">
+            <div class="step-icon">✓</div>
+            <div class="step-label">Mahasiswa</div>
+          </div>
+          <div class="step active">
+            <div class="step-icon">2</div>
+            <div class="step-label">Dosen</div>
+          </div>
+          <div class="step">
+            <div class="step-icon">3</div>
+            <div class="step-label">Ketua Jurusan / Sekjur</div>
+          </div>
+          <div class="step">
+            <div class="step-icon">4</div>
+            <div class="step-label">Admin Jurusan</div>
+          </div>
+        </div>
+
+        <div class="ai-box">
+          <h4><span class="icon">🤖</span> AI Analysis</h4>
+          <p>✓ Data lengkap<br>✓ Dokumen sesuai<br><strong>Rekomendasi:</strong> Pengajuan dapat diproses ke tahap berikutnya.</p>
+          <p class="ai-note">* AI hanya memberikan rekomendasi, keputusan tetap pada validator.</p>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-label">Nama</div>
+          <div>Firly Nurrohman</div>
+          
+          <div class="info-label">NIM</div>
+          <div>250115042</div>
+          
+          <div class="info-label">Jenis Izin</div>
+          <div>Sakit</div>
+          
+          <div class="info-label">Durasi</div>
+          <div>= 1 Hari</div>
+          
+          <div class="info-label">Alasan</div>
+          <div>Sakit demam dan flu, perlu istirahat 1 hari sesuai anjuran dokter.</div>
+          
+          <div class="info-label">Dokumen Pendukung</div>
+          <div><a href="#" style="color: var(--primary-color); text-decoration: underline;">Surat Dokter.pdf</a></div>
+        </div>
+
+        <div class="actions">
+          <a href="pengajuan.html" class="btn btn-secondary" style="background: #e5e7eb; color: #374151;">Kembali</a>
+          <button class="btn btn-danger" style="background: #ef4444; color: white;" onclick="alert('Pengajuan ditolak')">Tolak</button>
+          <button class="btn btn-success" style="background: #22c55e; color: white;" onclick="alert('Pengajuan disetujui, diteruskan ke tahap berikutnya')">Setujui</button>
+        </div>
+      </div>
+    </div>
+    <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
+  </div>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

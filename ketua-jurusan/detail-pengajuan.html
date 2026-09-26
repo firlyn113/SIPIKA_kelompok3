@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Pengajuan — SIPIKA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="app">
+  <div class="scrim"></div>
+  <aside class="sidebar">
+    <div class="brand">
+      <strong>SIPIKA</strong>
+      <span>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</span>
+    </div>
+    <div class="role-chip">
+      <span class="name">Sekjur TRPL</span>
+      <span class="role">Ketua Jurusan / Sekjur</span>
+    </div>
+    <ul class="nav-list">
+      <li><a href="dashboard.html" data-page="dashboard.html"><span class="icon">📊</span> Dashboard</a></li>
+      <li><a href="riwayat.html" data-page="riwayat.html"><span class="icon">🕒</span> Riwayat Validasi</a></li>
+      <hr class="nav-divider">
+      <li><a href="#"><span class="icon">👤</span> Profil</a></li>
+      <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
+    </ul>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <button class="hamburger" aria-label="Buka menu">☰</button>
+        <span class="crumb">SIPIKA / Ketua Jurusan / Sekjur / Detail Pengajuan</span>
+      </div>
+      <div class="crumb">Sekjur TRPL</div>
+    </div>
+
+    <div class="content">
+      <div class="alert alert-info">
+        <strong>🤖 Rekomendasi Asisten AI:</strong> Sistem mendeteksi lampiran Surat Keterangan Dokter yang valid. Catatan presensi mahasiswa di atas 90%. Direkomendasikan untuk Disetujui.<br>
+        <small><em>* Rekomendasi AI bukan keputusan final.</em></small>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">Informasi Pengajuan</div>
+        <div class="panel-body">
+          <div class="detail-grid">
+            <div class="detail-item">
+              <div class="detail-label">Nama Mahasiswa</div>
+              <div class="detail-value">Firly Nurrohman</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">NIM</div>
+              <div class="detail-value">250115042</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Durasi</div>
+              <div class="detail-value">= 1 Hari (22/09/2026)</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Alasan</div>
+              <div class="detail-value">Sakit</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Lampiran</div>
+              <div class="detail-value"><a href="#" class="btn btn-sm btn-secondary">Surat Dokter.pdf</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">Alur Validasi (= 1 Hari)</div>
+        <div class="panel-body">
+          <div class="stepper">
+            <div class="step done">
+              <div class="step-icon">✓</div>
+              <div class="step-label">Mahasiswa<br><small>Diajukan</small></div>
+            </div>
+            <div class="step done">
+              <div class="step-icon">✓</div>
+              <div class="step-label">Dosen<br><small>Disetujui</small></div>
+            </div>
+            <div class="step active">
+              <div class="step-icon">3</div>
+              <div class="step-label">Ketua Jurusan / Sekjur<br><small>Menunggu</small></div>
+            </div>
+            <div class="step">
+              <div class="step-icon">4</div>
+              <div class="step-label">Admin Jurusan<br><small>Pending</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-bar">
+        <a href="dashboard.html" class="btn btn-secondary">Kembali</a>
+        <div class="action-buttons">
+          <button class="btn btn-danger" onclick="alert('Pengajuan Ditolak!')">Tolak</button>
+          <button class="btn btn-success" onclick="alert('Pengajuan Disetujui! Pengajuan diteruskan ke Admin Jurusan.')">Setujui</button>
+        </div>
+      </div>
+      <div style="margin-top: 1rem;">
+        <small class="text-muted">Untuk simulasi durasi &gt; 1 hari, <a href="#" onclick="alert('Pengajuan Disetujui! Pengajuan diteruskan ke BAAK.')">klik di sini untuk mensimulasikan persetujuan ke BAAK</a>.</small>
+      </div>
+
+    </div>
+    <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
+  </div>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

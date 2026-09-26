@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pengajuan Perlu Validasi — SIPIKA</title>
+  <title>Dashboard Ketua Jurusan / Sekjur — SIPIKA</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
@@ -16,13 +16,12 @@
       <span>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</span>
     </div>
     <div class="role-chip">
-      <span class="name">Dr. Budi Santoso, M.Kom</span>
-      <span class="role">Dosen</span>
+      <span class="name">Sekjur TRPL</span>
+      <span class="role">Ketua Jurusan / Sekjur</span>
     </div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard"><span class="icon">📊</span> Dashboard</a></li>
-      <li><a href="pengajuan.html" data-page="pengajuan"><span class="icon">📋</span> Pengajuan Perlu Validasi</a></li>
-      <li><a href="riwayat.html" data-page="riwayat"><span class="icon">🕒</span> Riwayat Validasi</a></li>
+      <li><a href="dashboard.html" data-page="dashboard.html"><span class="icon">📊</span> Dashboard</a></li>
+      <li><a href="riwayat.html" data-page="riwayat.html"><span class="icon">🕒</span> Riwayat Validasi</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
@@ -33,25 +32,25 @@
     <div class="topbar">
       <div>
         <button class="hamburger" aria-label="Buka menu">☰</button>
-        <span class="crumb">SIPIKA / Dosen / Pengajuan Perlu Validasi</span>
+        <span class="crumb">SIPIKA / Ketua Jurusan / Sekjur / Dashboard</span>
       </div>
-      <div class="crumb">Dr. Budi Santoso, M.Kom</div>
+      <div class="crumb">Ketua Jurusan</div>
     </div>
 
     <div class="content">
+      <p class="hint">Menampilkan pengajuan izin durasi &ge; 1 hari yang telah disetujui Dosen.</p>
+      
       <div class="panel">
-        <h2 style="margin-bottom: 1rem;">Daftar Pengajuan Perlu Validasi</h2>
-        <div class="table-responsive">
+        <div class="panel-header">Menunggu Validasi Anda</div>
+        <div class="panel-body table-responsive">
           <table class="table">
             <thead>
               <tr>
                 <th>NIM</th>
                 <th>Nama Mahasiswa</th>
-                <th>Jenis Izin</th>
+                <th>Alasan</th>
                 <th>Durasi</th>
-                <th>Tanggal</th>
-                <th>Dokumen</th>
-                <th>Status</th>
+                <th>Status Workflow</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -60,20 +59,8 @@
                 <td>250115042</td>
                 <td>Firly Nurrohman</td>
                 <td>Sakit</td>
-                <td>= 1 hari</td>
-                <td>22 Sep 2026</td>
-                <td>Surat_Dokter.pdf</td>
-                <td><span class="badge badge-warning">Menunggu Validasi Dosen</span></td>
-                <td><a href="detail-pengajuan.html" class="btn btn-sm btn-primary">Lihat Detail</a></td>
-              </tr>
-              <tr>
-                <td>250122015</td>
-                <td>Salsabila Putri</td>
-                <td>Izin Pulang Cepat</td>
-                <td>&lt; 1 hari</td>
-                <td>22 Sep 2026</td>
-                <td>-</td>
-                <td><span class="badge badge-warning">Menunggu Validasi Dosen</span></td>
+                <td>= 1 Hari</td>
+                <td><span class="badge badge-warning">Menunggu Validasi Ketua Jurusan / Sekjur</span></td>
                 <td><a href="detail-pengajuan.html" class="btn btn-sm btn-primary">Lihat Detail</a></td>
               </tr>
             </tbody>
