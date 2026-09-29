@@ -12,13 +12,13 @@
   <div class="scrim"></div>
   <aside class="sidebar">
     <div class="brand"><strong>SIPIKA</strong><span>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</span></div>
-    <div class="role-chip"><span class="name">Admin Jurusan </span><span class="role">Admin Jurusan</span></div>
+    <div class="role-chip"><span class="name">Admin Jurusan</span><span class="role">Admin Jurusan</span></div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard.html"><span class="icon">&#9635;</span> Dashboard</a></li>
-      <li><a href="data-perizinan.html" data-page="data-perizinan.html"><span class="icon">&#128203;</span> Data Perizinan</a></li>
-      <li><a href="menunggu-admin.html" data-page="menunggu-admin.html"><span class="icon">&#9203;</span> Pengajuan Menunggu Admin</a></li>
-      <li><a href="rekap.html" data-page="rekap.html"><span class="icon">&#128202;</span> Rekap Perizinan</a></li>
-      <li><a href="riwayat.html" data-page="riwayat.html"><span class="icon">&#128340;</span> Riwayat</a></li>
+      <li><a href="dashboard.html"><span class="icon">&#9635;</span> Dashboard</a></li>
+      <li><a href="data-perizinan.html"><span class="icon">&#128203;</span> Data Perizinan</a></li>
+      <li><a href="menunggu-admin.html" class="active"><span class="icon">&#9203;</span> Pengajuan Menunggu Admin</a></li>
+      <li><a href="rekap.html"><span class="icon">&#128202;</span> Rekap Perizinan</a></li>
+      <li><a href="riwayat.html"><span class="icon">&#128340;</span> Riwayat</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">&#128100;</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">&#8630;</span> Logout</a></li>
@@ -32,12 +32,78 @@
     <div class="content">
       <h1>Pengajuan Menunggu Admin Jurusan</h1>
       <p style="color:var(--muted); margin-bottom:20px;">Pengajuan yang sudah menyelesaikan seluruh tahap validasi sebelumnya (sesuai kategori durasi) dan kini berada di tahap Admin Jurusan.</p>
-      <div data-menunggu-list></div>
+      
+      <!-- Card 1: Firly Nurrohman (= 1 hari) -->
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Firly Nurrohman <span class="dummy-tag">250115042</span></h3>
+            <div class="hint">Sakit &middot; = 1 hari &middot; diajukan 22/09/2026</div>
+          </div>
+          <a class="btn btn-primary btn-sm" href="detail-pengajuan.html">Lihat Detail</a>
+        </div>
+        <div class="stepper">
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Mahasiswa</div>
+            <div class="sub">22/09/2026</div>
+          </div>
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Dosen</div>
+            <div class="sub">22/09/2026</div>
+          </div>
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Ketua Jurusan / Sekjur</div>
+            <div class="sub">22/09/2026</div>
+          </div>
+          <div class="step pending">
+            <div class="line"></div>
+            <div class="dot">&hellip;</div>
+            <div class="label">Admin Jurusan</div>
+            <div class="sub">Menunggu</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Salsabila Putri (< 1 hari) -->
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Salsabila Putri <span class="dummy-tag">250122015</span></h3>
+            <div class="hint">Izin Pulang Cepat (Keperluan Mendesak) &middot; &lt; 1 hari &middot; diajukan 18/09/2026</div>
+          </div>
+          <a class="btn btn-primary btn-sm" href="detail-pengajuan.html">Lihat Detail</a>
+        </div>
+        <div class="stepper">
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Mahasiswa</div>
+            <div class="sub">18/09/2026</div>
+          </div>
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Dosen</div>
+            <div class="sub">18/09/2026</div>
+          </div>
+          <div class="step pending">
+            <div class="line"></div>
+            <div class="dot">&hellip;</div>
+            <div class="label">Admin Jurusan</div>
+            <div class="sub">Menunggu</div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
-<script src="../assets/js/script.js"></script>
-<script src="admin-script.js"></script>
 </body>
 </html>

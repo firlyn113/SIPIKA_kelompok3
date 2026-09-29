@@ -20,9 +20,9 @@
       <span class="role">Dosen</span>
     </div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard"><span class="icon">📊</span> Dashboard</a></li>
-      <li><a href="pengajuan.html" data-page="pengajuan"><span class="icon">📋</span> Pengajuan Perlu Validasi</a></li>
-      <li><a href="riwayat.html" data-page="riwayat"><span class="icon">🕒</span> Riwayat Validasi</a></li>
+      <li><a href="dashboard.html" class="active"><span class="icon">📊</span> Dashboard</a></li>
+      <li><a href="pengajuan.html"><span class="icon">📋</span> Pengajuan Perlu Validasi</a></li>
+      <li><a href="riwayat.html"><span class="icon">🕒</span> Riwayat Validasi</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
@@ -39,25 +39,31 @@
     </div>
 
     <div class="content">
-      <div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-        <div class="card" style="padding: 1.5rem; text-align: center; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-          <h3 style="font-size: 1rem; color: #4b5563; margin-bottom: 0.5rem; font-weight: 500;">Total Pengajuan Masuk</h3>
-          <p style="font-size: 2rem; font-weight: 700; margin: 0; color: #111827;">6</p>
+      <h1>Dashboard Dosen</h1>
+      <p class="hint" style="margin-bottom: 20px;">Ringkasan validasi perizinan ketidakhadiran mahasiswa yang memerlukan persetujuan Dosen.</p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="label">Total Pengajuan Masuk</div>
+          <div class="value">6</div>
         </div>
-        <div class="card" style="padding: 1.5rem; text-align: center; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-          <h3 style="font-size: 1rem; color: #4b5563; margin-bottom: 0.5rem; font-weight: 500;">Menunggu Validasi</h3>
-          <p style="font-size: 2rem; font-weight: 700; margin: 0; color: var(--warning-color, #eab308);">2</p>
+        <div class="stat-card warning">
+          <div class="label">Menunggu Validasi</div>
+          <div class="value">2</div>
         </div>
-        <div class="card" style="padding: 1.5rem; text-align: center; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-          <h3 style="font-size: 1rem; color: #4b5563; margin-bottom: 0.5rem; font-weight: 500;">Sudah Divalidasi</h3>
-          <p style="font-size: 2rem; font-weight: 700; margin: 0; color: var(--success-color, #22c55e);">4</p>
+        <div class="stat-card success">
+          <div class="label">Sudah Divalidasi</div>
+          <div class="value">4</div>
         </div>
       </div>
 
       <div class="panel">
-        <h2 style="margin-bottom: 1rem;">Pengajuan Terbaru</h2>
-        <div class="table-responsive">
-          <table class="table">
+        <div class="panel-head">
+          <h2>Pengajuan Terbaru</h2>
+          <a href="pengajuan.html" class="hint">Lihat semua &rarr;</a>
+        </div>
+        <div class="table-wrap">
+          <table>
             <thead>
               <tr>
                 <th>NIM</th>
@@ -74,7 +80,7 @@
                 <td>Firly Nurrohman</td>
                 <td>Sakit</td>
                 <td>= 1 hari</td>
-                <td><span class="badge badge-warning">Menunggu Validasi Dosen</span></td>
+                <td><span class="badge badge-menunggu">Menunggu Validasi Dosen</span></td>
                 <td><a href="detail-pengajuan.html" class="btn btn-sm btn-primary">Lihat Detail</a></td>
               </tr>
               <tr>
@@ -82,7 +88,7 @@
                 <td>Salsabila Putri</td>
                 <td>Izin Pulang Cepat</td>
                 <td>&lt; 1 hari</td>
-                <td><span class="badge badge-warning">Menunggu Validasi Dosen</span></td>
+                <td><span class="badge badge-menunggu">Menunggu Validasi Dosen</span></td>
                 <td><a href="detail-pengajuan.html" class="btn btn-sm btn-primary">Lihat Detail</a></td>
               </tr>
             </tbody>
@@ -93,6 +99,5 @@
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
-<script src="../assets/js/script.js"></script>
 </body>
 </html>

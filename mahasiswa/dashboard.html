@@ -17,13 +17,12 @@
     </div>
     <div class="role-chip">
       <span class="name">Firly Nurrohman</span>
-      <span class="role">Mahasiswa</span>
-      <span style="font-size: 0.75rem; color: #a1a1aa; display: block; margin-top: 4px;">250115042 - D4 Teknologi Rekayasa Perangkat Lunak</span>
+      <span class="role">Mahasiswa &middot; 250115042</span>
     </div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard.html"><span class="icon">🏠</span> Dashboard</a></li>
-      <li><a href="pengajuan.html" data-page="pengajuan.html"><span class="icon">➕</span> Ajukan Izin</a></li>
-      <li><a href="riwayat.html" data-page="riwayat.html"><span class="icon">📜</span> Riwayat Pengajuan</a></li>
+      <li><a href="dashboard.html" class="active"><span class="icon">🏠</span> Dashboard</a></li>
+      <li><a href="pengajuan.html"><span class="icon">➕</span> Ajukan Izin</a></li>
+      <li><a href="riwayat.html"><span class="icon">📜</span> Riwayat Pengajuan</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
@@ -41,40 +40,43 @@
 
     <div class="content">
       <h1>Dashboard Mahasiswa</h1>
+      <p class="hint" style="margin-bottom: 20px;">Selamat datang di portal perizinan ketidakhadiran perkuliahan Politeknik Negeri Cilacap.</p>
       
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-        <div class="card" style="padding: 1.5rem; text-align: center;">
-          <h3>Total Pengajuan</h3>
-          <p style="font-size: 2.5rem; font-weight: 700; color: #3b82f6;">3</p>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="label">Total Pengajuan</div>
+          <div class="value">3</div>
         </div>
-        <div class="card" style="padding: 1.5rem; text-align: center;">
-          <h3>Sedang Diproses</h3>
-          <p style="font-size: 2.5rem; font-weight: 700; color: #f59e0b;">1</p>
+        <div class="stat-card warning">
+          <div class="label">Sedang Diproses</div>
+          <div class="value">1</div>
         </div>
-        <div class="card" style="padding: 1.5rem; text-align: center;">
-          <h3>Disetujui</h3>
-          <p style="font-size: 2.5rem; font-weight: 700; color: #10b981;">2</p>
+        <div class="stat-card success">
+          <div class="label">Disetujui</div>
+          <div class="value">2</div>
         </div>
       </div>
 
-      <div class="card" style="margin-bottom: 2rem;">
+      <div class="panel">
         <h2>Tindakan Cepat</h2>
-        <p>Ajukan perizinan ketidakhadiran baru dengan mudah melalui formulir online.</p>
-        <a href="pengajuan.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Buat Pengajuan Baru</a>
+        <p>Ingin mengajukan perizinan ketidakhadiran perkuliahan? Pastikan dokumen bukti pendukung sudah siap.</p>
+        <a href="pengajuan.html" class="btn btn-primary" style="margin-top: 10px;">Buat Pengajuan Baru</a>
       </div>
 
-      <div class="card" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
-        <h2>Aturan Alur Validasi Perizinan</h2>
-        <ul style="margin-top: 1rem; padding-left: 1.5rem; line-height: 1.6;">
-          <li style="margin-bottom: 0.5rem;"><strong>Durasi &lt; 1 hari (Izin Jam Kuliah):</strong> Mahasiswa &rarr; Validasi Dosen &rarr; Cetak Surat (Admin Jurusan)</li>
-          <li style="margin-bottom: 0.5rem;"><strong>Durasi = 1 hari:</strong> Mahasiswa &rarr; Validasi Dosen &rarr; Validasi Ketua Jurusan / Sekjur &rarr; Cetak Surat (Admin Jurusan)</li>
-          <li><strong>Durasi &gt; 1 hari:</strong> Mahasiswa &rarr; Validasi Dosen &rarr; Validasi Ketua Jurusan / Sekjur &rarr; Validasi BAAK &rarr; Cetak Surat (Admin Jurusan)</li>
-        </ul>
+      <div class="panel">
+        <h2>Ringkasan Alur Perizinan Otomatis</h2>
+        <p class="text-sm text-muted">Di SIPIKA, Anda <strong>tidak perlu memilih validator</strong> secara manual. Sistem akan secara otomatis menentukan alur persetujuan berdasarkan durasi ketidakhadiran yang diajukan:</p>
+        <div class="rule-box my-2">
+          <ul>
+            <li><strong>&lt; 1 Hari:</strong> Mahasiswa &rarr; Dosen &rarr; Admin Jurusan</li>
+            <li><strong>= 1 Hari:</strong> Mahasiswa &rarr; Dosen &rarr; Ketua Jurusan / Sekjur &rarr; Admin Jurusan</li>
+            <li><strong>&gt; 1 Hari:</strong> Mahasiswa &rarr; Dosen &rarr; Ketua Jurusan / Sekjur &rarr; BAAK &rarr; Admin Jurusan</li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
-<script src="../assets/js/script.js"></script>
 </body>
 </html>

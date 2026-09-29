@@ -20,9 +20,9 @@
       <span class="role">Dosen</span>
     </div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard"><span class="icon">📊</span> Dashboard</a></li>
-      <li><a href="pengajuan.html" data-page="pengajuan"><span class="icon">📋</span> Pengajuan Perlu Validasi</a></li>
-      <li><a href="riwayat.html" data-page="riwayat"><span class="icon">🕒</span> Riwayat Validasi</a></li>
+      <li><a href="dashboard.html"><span class="icon">📊</span> Dashboard</a></li>
+      <li><a href="pengajuan.html"><span class="icon">📋</span> Pengajuan Perlu Validasi</a></li>
+      <li><a href="riwayat.html" class="active"><span class="icon">🕒</span> Riwayat Validasi</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
@@ -40,15 +40,15 @@
 
     <div class="content">
       <div class="panel">
-        <h2 style="margin-bottom: 1rem;">Riwayat Validasi</h2>
-        <div class="table-responsive">
-          <table class="table">
+        <h2 style="margin-bottom: 1rem;">Riwayat Validasi Dosen</h2>
+        <div class="table-wrap">
+          <table>
             <thead>
               <tr>
                 <th>NIM</th>
-                <th>Nama</th>
+                <th>Nama Mahasiswa</th>
                 <th>Durasi</th>
-                <th>Keputusan</th>
+                <th>Keputusan Dosen</th>
                 <th>Posisi Saat Ini (Workflow)</th>
               </tr>
             </thead>
@@ -56,30 +56,30 @@
               <tr>
                 <td>250315778</td>
                 <td>Rahull</td>
-                <td>&gt; 1 hari</td>
-                <td><span class="badge badge-success">Disetujui</span></td>
-                <td>Disetujui (Selesai)</td>
+                <td>&gt; 1 hari (2 hari)</td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
+                <td>Disetujui (Selesai diarsipkan)</td>
               </tr>
               <tr>
                 <td>250133090</td>
                 <td>Ahmad Fauzan</td>
-                <td>&gt; 1 hari</td>
-                <td><span class="badge badge-success">Disetujui</span></td>
-                <td>Disetujui (Selesai)</td>
+                <td>&gt; 1 hari (3 hari)</td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
+                <td>Disetujui (Selesai diarsipkan)</td>
               </tr>
               <tr>
                 <td>250144067</td>
                 <td>Dewi Anggraini</td>
                 <td>= 1 hari</td>
-                <td><span class="badge badge-success">Disetujui</span></td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
                 <td>Ditolak oleh Ketua Jurusan / Sekjur</td>
               </tr>
               <tr>
                 <td>250155023</td>
                 <td>Bagas Saputra</td>
                 <td>&lt; 1 hari</td>
-                <td><span class="badge badge-success">Disetujui</span></td>
-                <td>Disetujui (Selesai)</td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
+                <td>Disetujui (Selesai diarsipkan)</td>
               </tr>
             </tbody>
           </table>
@@ -89,6 +89,5 @@
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
-<script src="../assets/js/script.js"></script>
 </body>
 </html>

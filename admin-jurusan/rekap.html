@@ -12,13 +12,13 @@
   <div class="scrim"></div>
   <aside class="sidebar">
     <div class="brand"><strong>SIPIKA</strong><span>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</span></div>
-    <div class="role-chip"><span class="name">Admin Jurusan </span><span class="role">Admin Jurusan</span></div>
+    <div class="role-chip"><span class="name">Admin Jurusan</span><span class="role">Admin Jurusan</span></div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard.html"><span class="icon">&#9635;</span> Dashboard</a></li>
-      <li><a href="data-perizinan.html" data-page="data-perizinan.html"><span class="icon">&#128203;</span> Data Perizinan</a></li>
-      <li><a href="menunggu-admin.html" data-page="menunggu-admin.html"><span class="icon">&#9203;</span> Pengajuan Menunggu Admin</a></li>
-      <li><a href="rekap.html" data-page="rekap.html"><span class="icon">&#128202;</span> Rekap Perizinan</a></li>
-      <li><a href="riwayat.html" data-page="riwayat.html"><span class="icon">&#128340;</span> Riwayat</a></li>
+      <li><a href="dashboard.html"><span class="icon">&#9635;</span> Dashboard</a></li>
+      <li><a href="data-perizinan.html"><span class="icon">&#128203;</span> Data Perizinan</a></li>
+      <li><a href="menunggu-admin.html"><span class="icon">&#9203;</span> Pengajuan Menunggu Admin</a></li>
+      <li><a href="rekap.html" class="active"><span class="icon">&#128202;</span> Rekap Perizinan</a></li>
+      <li><a href="riwayat.html"><span class="icon">&#128340;</span> Riwayat</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">&#128100;</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">&#8630;</span> Logout</a></li>
@@ -27,24 +27,11 @@
   <div class="main">
     <div class="topbar">
       <div><button class="hamburger" aria-label="Buka menu">&#9776;</button><span class="crumb">SIPIKA / Admin Jurusan / Rekap Perizinan</span></div>
-      <div class="crumb">Admin Jurusan </div>
+      <div class="crumb">Admin Jurusan</div>
     </div>
     <div class="content">
       <h1>Rekap Perizinan</h1>
-      <p style="color:var(--muted); margin-bottom:16px;">Rekap administrasi seluruh pengajuan. Filter di bawah ini murni simulasi tampilan (frontend saja).</p>
-
-      <div class="filter-row">
-        <button class="chip-filter active" data-filter-durasi="semua">Semua Durasi</button>
-        <button class="chip-filter" data-filter-durasi="&lt;1">&lt; 1 hari</button>
-        <button class="chip-filter" data-filter-durasi="=1">= 1 hari</button>
-        <button class="chip-filter" data-filter-durasi="&gt;1">&gt; 1 hari</button>
-      </div>
-      <div class="filter-row">
-        <button class="chip-filter active" data-filter-status="semua">Semua Status</button>
-        <button class="chip-filter" data-filter-status="disetujui">Disetujui</button>
-        <button class="chip-filter" data-filter-status="ditolak">Ditolak</button>
-        <button class="chip-filter" data-filter-status="menunggu_admin">Menunggu Admin</button>
-      </div>
+      <p style="color:var(--muted); margin-bottom:16px;">Rekapitulasi administrasi seluruh pengajuan perizinan mahasiswa.</p>
 
       <div class="panel">
         <div class="table-wrap">
@@ -52,7 +39,74 @@
             <thead>
               <tr><th>No</th><th>NIM</th><th>Nama Mahasiswa</th><th>Program Studi</th><th>Alasan</th><th>Durasi</th><th>Tanggal</th><th>Status</th><th>Hasil Validasi</th></tr>
             </thead>
-            <tbody data-rekap-table></tbody>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>250115042</td>
+                <td>Firly Nurrohman</td>
+                <td>D4 Teknologi Rekayasa Perangkat Lunak</td>
+                <td>Sakit</td>
+                <td>= 1 hari</td>
+                <td>22/09/2026</td>
+                <td><span class="badge badge-menunggu">Menunggu Admin Jurusan</span></td>
+                <td>Proses berjalan</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>250315778</td>
+                <td>Rahull</td>
+                <td>D4 Teknologi Rekayasa Perangkat Lunak</td>
+                <td>Izin Keperluan Keluarga</td>
+                <td>&gt; 1 hari</td>
+                <td>13/09/2026</td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
+                <td>Lengkap &amp; final</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>250122015</td>
+                <td>Salsabila Putri</td>
+                <td>D4 Teknologi Rekayasa Perangkat Lunak</td>
+                <td>Izin Pulang Cepat (Keperluan Mendesak)</td>
+                <td>&lt; 1 hari</td>
+                <td>18/09/2026</td>
+                <td><span class="badge badge-menunggu">Menunggu Admin Jurusan</span></td>
+                <td>Proses berjalan</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>250133090</td>
+                <td>Ahmad Fauzan</td>
+                <td>D4 Teknologi Rekayasa Perangkat Lunak</td>
+                <td>Keperluan Keluarga (Duka)</td>
+                <td>&gt; 1 hari</td>
+                <td>10/09/2026</td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
+                <td>Lengkap &amp; final</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>250144067</td>
+                <td>Dewi Anggraini</td>
+                <td>D4 Teknologi Rekayasa Perangkat Lunak</td>
+                <td>Sakit</td>
+                <td>= 1 hari</td>
+                <td>08/09/2026</td>
+                <td><span class="badge badge-ditolak">Ditolak</span></td>
+                <td>Ditolak saat validasi</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>250155023</td>
+                <td>Bagas Saputra</td>
+                <td>D4 Teknologi Rekayasa Perangkat Lunak</td>
+                <td>Izin Kegiatan Organisasi</td>
+                <td>&lt; 1 hari</td>
+                <td>05/09/2026</td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
+                <td>Lengkap &amp; final</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -60,7 +114,5 @@
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
-<script src="../assets/js/script.js"></script>
-<script src="admin-script.js"></script>
 </body>
 </html>

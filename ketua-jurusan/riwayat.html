@@ -20,8 +20,8 @@
       <span class="role">Ketua Jurusan / Sekjur</span>
     </div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard.html"><span class="icon">📊</span> Dashboard</a></li>
-      <li><a href="riwayat.html" data-page="riwayat.html"><span class="icon">🕒</span> Riwayat Validasi</a></li>
+      <li><a href="dashboard.html"><span class="icon">📊</span> Dashboard</a></li>
+      <li><a href="riwayat.html" class="active"><span class="icon">🕒</span> Riwayat Validasi</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
@@ -38,12 +38,12 @@
     </div>
 
     <div class="content">
-      <p class="hint">Menampilkan hasil keputusan yang pernah diberikan oleh Ketua Jurusan / Sekjur.</p>
-      
       <div class="panel">
-        <div class="panel-header">Riwayat Keputusan</div>
-        <div class="panel-body table-responsive">
-          <table class="table">
+        <h2 style="margin-bottom: 0.5rem;">Daftar Pengajuan yang Telah Divalidasi</h2>
+        <p class="hint" style="margin-bottom: 16px;">Menampilkan hasil keputusan yang pernah diberikan oleh Ketua Jurusan / Sekjur.</p>
+        
+        <div class="table-wrap">
+          <table>
             <thead>
               <tr>
                 <th>NIM</th>
@@ -57,22 +57,22 @@
               <tr>
                 <td>250315778</td>
                 <td>Rahull</td>
-                <td>&gt; 1 Hari</td>
-                <td><span class="badge badge-success">Disetujui</span></td>
-                <td>Disetujui (Selesai)</td>
+                <td>&gt; 1 Hari (2 Hari)</td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
+                <td>Disetujui (Selesai diarsipkan)</td>
               </tr>
               <tr>
                 <td>250133090</td>
                 <td>Ahmad Fauzan</td>
-                <td>&gt; 1 Hari</td>
-                <td><span class="badge badge-success">Disetujui</span></td>
-                <td>Disetujui (Selesai)</td>
+                <td>&gt; 1 Hari (3 Hari)</td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
+                <td>Disetujui (Selesai diarsipkan)</td>
               </tr>
               <tr>
                 <td>250144067</td>
                 <td>Dewi Anggraini</td>
                 <td>= 1 Hari</td>
-                <td><span class="badge badge-danger">Ditolak</span></td>
+                <td><span class="badge badge-ditolak">Ditolak</span></td>
                 <td>Selesai (Ditolak)</td>
               </tr>
             </tbody>
@@ -83,6 +83,5 @@
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
-<script src="../assets/js/script.js"></script>
 </body>
 </html>

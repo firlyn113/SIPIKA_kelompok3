@@ -20,9 +20,9 @@
       <span class="role">Dosen</span>
     </div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard"><span class="icon">📊</span> Dashboard</a></li>
-      <li><a href="pengajuan.html" data-page="pengajuan"><span class="icon">📋</span> Pengajuan Perlu Validasi</a></li>
-      <li><a href="riwayat.html" data-page="riwayat"><span class="icon">🕒</span> Riwayat Validasi</a></li>
+      <li><a href="dashboard.html"><span class="icon">📊</span> Dashboard</a></li>
+      <li><a href="pengajuan.html" class="active"><span class="icon">📋</span> Pengajuan Perlu Validasi</a></li>
+      <li><a href="riwayat.html"><span class="icon">🕒</span> Riwayat Validasi</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
@@ -41,8 +41,8 @@
     <div class="content">
       <div class="panel">
         <h2 style="margin-bottom: 1rem;">Daftar Pengajuan Perlu Validasi</h2>
-        <div class="table-responsive">
-          <table class="table">
+        <div class="table-wrap">
+          <table>
             <thead>
               <tr>
                 <th>NIM</th>
@@ -61,9 +61,9 @@
                 <td>Firly Nurrohman</td>
                 <td>Sakit</td>
                 <td>= 1 hari</td>
-                <td>22 Sep 2026</td>
-                <td>Surat_Dokter.pdf</td>
-                <td><span class="badge badge-warning">Menunggu Validasi Dosen</span></td>
+                <td>22/09/2026</td>
+                <td>Surat Dokter.pdf</td>
+                <td><span class="badge badge-menunggu">Menunggu Validasi Dosen</span></td>
                 <td><a href="detail-pengajuan.html" class="btn btn-sm btn-primary">Lihat Detail</a></td>
               </tr>
               <tr>
@@ -71,9 +71,9 @@
                 <td>Salsabila Putri</td>
                 <td>Izin Pulang Cepat</td>
                 <td>&lt; 1 hari</td>
-                <td>22 Sep 2026</td>
-                <td>-</td>
-                <td><span class="badge badge-warning">Menunggu Validasi Dosen</span></td>
+                <td>18/09/2026</td>
+                <td>Surat Izin Orang Tua.pdf</td>
+                <td><span class="badge badge-menunggu">Menunggu Validasi Dosen</span></td>
                 <td><a href="detail-pengajuan.html" class="btn btn-sm btn-primary">Lihat Detail</a></td>
               </tr>
             </tbody>
@@ -84,6 +84,5 @@
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
-<script src="../assets/js/script.js"></script>
 </body>
 </html>

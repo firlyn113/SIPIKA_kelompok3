@@ -20,8 +20,8 @@
       <span class="role">BAAK</span>
     </div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard"><span class="icon">🏠</span> Dashboard</a></li>
-      <li><a href="riwayat.html" data-page="riwayat"><span class="icon">📄</span> Riwayat Validasi</a></li>
+      <li><a href="dashboard.html" class="active"><span class="icon">🏠</span> Dashboard</a></li>
+      <li><a href="riwayat.html"><span class="icon">📄</span> Riwayat Validasi</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
@@ -38,13 +38,15 @@
     </div>
 
     <div class="content">
+      <h1>Dashboard BAAK</h1>
+      <p class="hint" style="margin-bottom: 20px;">Menampilkan pengajuan izin durasi &gt; 1 hari yang telah disetujui Dosen dan Ketua Jurusan / Sekjur.</p>
+
       <div class="panel">
-        <p class="text-secondary" style="margin-bottom: 1rem;">Menampilkan pengajuan izin durasi > 1 hari yang telah disetujui Dosen dan Ketua Jurusan / Sekjur.</p>
-        <div class="panel-header">
-          <h2>Membutuhkan Persetujuan BAAK (Durasi > 1 Hari)</h2>
+        <div class="panel-head">
+          <h2>Membutuhkan Persetujuan BAAK (Durasi &gt; 1 Hari)</h2>
         </div>
-        <div class="table-responsive">
-          <table class="table">
+        <div class="table-wrap">
+          <table>
             <thead>
               <tr>
                 <th>NIM</th>
@@ -62,8 +64,8 @@
                 <td>Rahull</td>
                 <td>2 Hari</td>
                 <td>Izin Keperluan Keluarga</td>
-                <td><span class="badge badge-success">Disetujui</span></td>
-                <td><span class="badge badge-success">Disetujui</span></td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
                 <td>
                   <a href="detail-pengajuan.html" class="btn btn-sm btn-primary">Lihat Detail</a>
                 </td>
@@ -71,12 +73,11 @@
             </tbody>
           </table>
         </div>
-        <p class="text-secondary" style="margin-top: 1rem;"><em>Saat ini tidak ada pengajuan yang menunggu validasi BAAK. (Data di atas hanya contoh historis)</em></p>
+        <p class="hint" style="margin-top: 1rem;"><em>* Saat ini pengajuan aktif telah diproses. Data di atas menampilkan contoh historis untuk simulasi.</em></p>
       </div>
     </div>
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
-<script src="../assets/js/script.js"></script>
 </body>
 </html>

@@ -6,23 +6,6 @@
   <title>Detail Pengajuan — SIPIKA</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
-  <style>
-    .info-grid { display: grid; grid-template-columns: 150px 1fr; gap: 1rem; margin-bottom: 1.5rem; }
-    .info-label { font-weight: 600; color: var(--text-muted); }
-    .ai-box { background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; }
-    .ai-box h4 { margin-top: 0; color: #166534; display: flex; align-items: center; gap: 0.5rem; }
-    .ai-note { font-size: 0.85rem; color: #15803d; margin-top: 0.5rem; font-style: italic; }
-    .stepper { display: flex; justify-content: space-between; margin: 2rem 0; position: relative; }
-    .stepper::before { content: ''; position: absolute; top: 15px; left: 0; right: 0; height: 2px; background: #e5e7eb; z-index: 0; }
-    .step { position: relative; z-index: 1; text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-    .step-icon { width: 32px; height: 32px; border-radius: 50%; background: #e5e7eb; color: #6b7280; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid #fff; }
-    .step.done .step-icon { background: var(--success-color, #22c55e); color: #fff; border-color: var(--success-color, #22c55e); }
-    .step.active .step-icon { background: var(--primary-color, #2563eb); color: #fff; box-shadow: 0 0 0 3px rgba(37,99,235,0.2); }
-    .step-label { font-size: 0.85rem; font-weight: 500; color: #4b5563; }
-    .step.done .step-label { color: #111827; }
-    .step.active .step-label { color: var(--primary-color, #2563eb); font-weight: 600; }
-    .actions { display: flex; gap: 1rem; margin-top: 2rem; justify-content: flex-end; }
-  </style>
 </head>
 <body>
 <div class="app">
@@ -37,9 +20,9 @@
       <span class="role">Dosen</span>
     </div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard"><span class="icon">📊</span> Dashboard</a></li>
-      <li><a href="pengajuan.html" data-page="pengajuan"><span class="icon">📋</span> Pengajuan Perlu Validasi</a></li>
-      <li><a href="riwayat.html" data-page="riwayat"><span class="icon">🕒</span> Riwayat Validasi</a></li>
+      <li><a href="dashboard.html"><span class="icon">📊</span> Dashboard</a></li>
+      <li><a href="pengajuan.html" class="active"><span class="icon">📋</span> Pengajuan Perlu Validasi</a></li>
+      <li><a href="riwayat.html"><span class="icon">🕒</span> Riwayat Validasi</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
@@ -57,63 +40,86 @@
 
     <div class="content">
       <div class="panel">
-        <h2 style="margin-bottom: 1.5rem;">Detail Pengajuan Mahasiswa</h2>
+        <div class="panel-head">
+          <h2>Detail Pengajuan — Firly Nurrohman</h2>
+          <span class="badge badge-menunggu">Menunggu Validasi Dosen</span>
+        </div>
         
         <div class="stepper">
-          <div class="step done">
-            <div class="step-icon">✓</div>
-            <div class="step-label">Mahasiswa</div>
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Mahasiswa</div>
+            <div class="sub">22/09/2026</div>
           </div>
           <div class="step active">
-            <div class="step-icon">2</div>
-            <div class="step-label">Dosen</div>
+            <div class="line"></div>
+            <div class="dot">2</div>
+            <div class="label">Dosen</div>
+            <div class="sub">Menunggu Validasi</div>
           </div>
           <div class="step">
-            <div class="step-icon">3</div>
-            <div class="step-label">Ketua Jurusan / Sekjur</div>
+            <div class="line"></div>
+            <div class="dot">3</div>
+            <div class="label">Ketua Jurusan / Sekjur</div>
+            <div class="sub">Tahap 2</div>
           </div>
           <div class="step">
-            <div class="step-icon">4</div>
-            <div class="step-label">Admin Jurusan</div>
+            <div class="line"></div>
+            <div class="dot">4</div>
+            <div class="label">Admin Jurusan</div>
+            <div class="sub">Tahap Akhir</div>
           </div>
-        </div>
-
-        <div class="ai-box">
-          <h4><span class="icon">🤖</span> AI Analysis</h4>
-          <p>✓ Data lengkap<br>✓ Dokumen sesuai<br><strong>Rekomendasi:</strong> Pengajuan dapat diproses ke tahap berikutnya.</p>
-          <p class="ai-note">* AI hanya memberikan rekomendasi, keputusan tetap pada validator.</p>
-        </div>
-
-        <div class="info-grid">
-          <div class="info-label">Nama</div>
-          <div>Firly Nurrohman</div>
-          
-          <div class="info-label">NIM</div>
-          <div>250115042</div>
-          
-          <div class="info-label">Jenis Izin</div>
-          <div>Sakit</div>
-          
-          <div class="info-label">Durasi</div>
-          <div>= 1 Hari</div>
-          
-          <div class="info-label">Alasan</div>
-          <div>Sakit demam dan flu, perlu istirahat 1 hari sesuai anjuran dokter.</div>
-          
-          <div class="info-label">Dokumen Pendukung</div>
-          <div><a href="#" style="color: var(--primary-color); text-decoration: underline;">Surat Dokter.pdf</a></div>
-        </div>
-
-        <div class="actions">
-          <a href="pengajuan.html" class="btn btn-secondary" style="background: #e5e7eb; color: #374151;">Kembali</a>
-          <button class="btn btn-danger" style="background: #ef4444; color: white;" onclick="alert('Pengajuan ditolak')">Tolak</button>
-          <button class="btn btn-success" style="background: #22c55e; color: white;" onclick="alert('Pengajuan disetujui, diteruskan ke tahap berikutnya')">Setujui</button>
         </div>
       </div>
+
+      <div class="detail-grid">
+        <div>
+          <div class="panel">
+            <h3>Informasi Mahasiswa</h3>
+            <dl class="kv">
+              <dt>Nama</dt><dd>Firly Nurrohman</dd>
+              <dt>NIM</dt><dd>250115042</dd>
+              <dt>Program Studi</dt><dd>D4 Teknologi Rekayasa Perangkat Lunak</dd>
+            </dl>
+          </div>
+          
+          <div class="panel">
+            <h3>Informasi Pengajuan</h3>
+            <dl class="kv">
+              <dt>Jenis Izin</dt><dd>Sakit</dd>
+              <dt>Durasi</dt><dd>= 1 Hari (22/09/2026)</dd>
+              <dt>Alasan</dt><dd>Sakit demam dan flu, perlu istirahat 1 hari sesuai anjuran dokter.</dd>
+              <dt>Dokumen</dt><dd><a href="#">Surat Dokter.pdf</a></dd>
+            </dl>
+            <div class="doc-preview" style="margin-top:10px;">&#128196; Surat Dokter.pdf <span class="dummy-tag">preview statis</span></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="ai-panel">
+            <h3>&#129302; AI Verification Assistant</h3>
+            <div class="ai-check"><span>Kelengkapan Data</span><strong>✓ Lengkap</strong></div>
+            <div class="ai-check"><span>Dokumen Terlampir</span><strong>✓ Sesuai</strong></div>
+            <p style="margin-top:10px;"><strong>Rekomendasi:</strong> Pengajuan dapat diproses ke tahap berikutnya (Ketua Jurusan / Sekjur).</p>
+            <div class="ai-note">AI hanya memberikan rekomendasi awal, keputusan final tetap berada pada validator.</div>
+          </div>
+
+          <div class="panel" style="margin-top: 16px;">
+            <h3>Tindakan Validasi Dosen</h3>
+            <p class="hint">Tentukan keputusan persetujuan perizinan mahasiswa.</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <a href="riwayat.html" class="btn btn-success btn-sm">Setujui Pengajuan</a>
+              <a href="riwayat.html" class="btn btn-danger btn-sm">Tolak Pengajuan</a>
+              <a href="pengajuan.html" class="btn btn-secondary btn-sm">Kembali</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
-<script src="../assets/js/script.js"></script>
 </body>
 </html>

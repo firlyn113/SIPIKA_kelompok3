@@ -20,8 +20,8 @@
       <span class="role">Ketua Jurusan / Sekjur</span>
     </div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard.html"><span class="icon">📊</span> Dashboard</a></li>
-      <li><a href="riwayat.html" data-page="riwayat.html"><span class="icon">🕒</span> Riwayat Validasi</a></li>
+      <li><a href="dashboard.html" class="active"><span class="icon">📊</span> Dashboard</a></li>
+      <li><a href="riwayat.html"><span class="icon">🕒</span> Riwayat Validasi</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
@@ -38,78 +38,84 @@
     </div>
 
     <div class="content">
-      <div class="alert alert-info">
-        <strong>🤖 Rekomendasi Asisten AI:</strong> Sistem mendeteksi lampiran Surat Keterangan Dokter yang valid. Catatan presensi mahasiswa di atas 90%. Direkomendasikan untuk Disetujui.<br>
-        <small><em>* Rekomendasi AI bukan keputusan final.</em></small>
-      </div>
-
       <div class="panel">
-        <div class="panel-header">Informasi Pengajuan</div>
-        <div class="panel-body">
-          <div class="detail-grid">
-            <div class="detail-item">
-              <div class="detail-label">Nama Mahasiswa</div>
-              <div class="detail-value">Firly Nurrohman</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-label">NIM</div>
-              <div class="detail-value">250115042</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-label">Durasi</div>
-              <div class="detail-value">= 1 Hari (22/09/2026)</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-label">Alasan</div>
-              <div class="detail-value">Sakit</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-label">Lampiran</div>
-              <div class="detail-value"><a href="#" class="btn btn-sm btn-secondary">Surat Dokter.pdf</a></div>
-            </div>
+        <div class="panel-head">
+          <h2>Detail Pengajuan — Firly Nurrohman</h2>
+          <span class="badge badge-menunggu">Menunggu Validasi Ketua Jurusan / Sekjur</span>
+        </div>
+
+        <div class="stepper">
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Mahasiswa</div>
+            <div class="sub">22/09/2026 (Diajukan)</div>
+          </div>
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Dosen</div>
+            <div class="sub">22/09/2026 (Disetujui)</div>
+          </div>
+          <div class="step active">
+            <div class="line"></div>
+            <div class="dot">3</div>
+            <div class="label">Ketua Jurusan / Sekjur</div>
+            <div class="sub">Menunggu Validasi</div>
+          </div>
+          <div class="step">
+            <div class="line"></div>
+            <div class="dot">4</div>
+            <div class="label">Admin Jurusan</div>
+            <div class="sub">Tahap Akhir</div>
           </div>
         </div>
       </div>
 
-      <div class="panel">
-        <div class="panel-header">Alur Validasi (= 1 Hari)</div>
-        <div class="panel-body">
-          <div class="stepper">
-            <div class="step done">
-              <div class="step-icon">✓</div>
-              <div class="step-label">Mahasiswa<br><small>Diajukan</small></div>
-            </div>
-            <div class="step done">
-              <div class="step-icon">✓</div>
-              <div class="step-label">Dosen<br><small>Disetujui</small></div>
-            </div>
-            <div class="step active">
-              <div class="step-icon">3</div>
-              <div class="step-label">Ketua Jurusan / Sekjur<br><small>Menunggu</small></div>
-            </div>
-            <div class="step">
-              <div class="step-icon">4</div>
-              <div class="step-label">Admin Jurusan<br><small>Pending</small></div>
+      <div class="detail-grid">
+        <div>
+          <div class="panel">
+            <h3>Informasi Mahasiswa</h3>
+            <dl class="kv">
+              <dt>Nama Mahasiswa</dt><dd>Firly Nurrohman</dd>
+              <dt>NIM</dt><dd>250115042</dd>
+              <dt>Program Studi</dt><dd>D4 Teknologi Rekayasa Perangkat Lunak</dd>
+            </dl>
+          </div>
+
+          <div class="panel">
+            <h3>Informasi Pengajuan</h3>
+            <dl class="kv">
+              <dt>Durasi</dt><dd>= 1 Hari (22/09/2026)</dd>
+              <dt>Alasan</dt><dd>Sakit</dd>
+              <dt>Lampiran</dt><dd><a href="#">Surat Dokter.pdf</a></dd>
+            </dl>
+            <div class="doc-preview" style="margin-top:10px;">&#128196; Surat Dokter.pdf <span class="dummy-tag">preview statis</span></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="ai-panel">
+            <h3>&#129302; AI Verification Assistant</h3>
+            <p><strong>Rekomendasi:</strong> Sistem mendeteksi lampiran Surat Keterangan Dokter yang valid. Catatan presensi mahasiswa di atas 90%. Direkomendasikan untuk <strong>Disetujui</strong>.</p>
+            <div class="ai-note">Rekomendasi AI bukan keputusan final. Keputusan tetap berada pada Ketua Jurusan / Sekjur.</div>
+          </div>
+
+          <div class="panel" style="margin-top: 16px;">
+            <h3>Tindakan Validasi</h3>
+            <p class="hint">Tentukan keputusan persetujuan perizinan mahasiswa.</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <a href="riwayat.html" class="btn btn-success btn-sm">Setujui Pengajuan</a>
+              <a href="riwayat.html" class="btn btn-danger btn-sm">Tolak Pengajuan</a>
+              <a href="dashboard.html" class="btn btn-secondary btn-sm">Kembali</a>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="action-bar">
-        <a href="dashboard.html" class="btn btn-secondary">Kembali</a>
-        <div class="action-buttons">
-          <button class="btn btn-danger" onclick="alert('Pengajuan Ditolak!')">Tolak</button>
-          <button class="btn btn-success" onclick="alert('Pengajuan Disetujui! Pengajuan diteruskan ke Admin Jurusan.')">Setujui</button>
-        </div>
-      </div>
-      <div style="margin-top: 1rem;">
-        <small class="text-muted">Untuk simulasi durasi &gt; 1 hari, <a href="#" onclick="alert('Pengajuan Disetujui! Pengajuan diteruskan ke BAAK.')">klik di sini untuk mensimulasikan persetujuan ke BAAK</a>.</small>
       </div>
 
     </div>
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
-<script src="../assets/js/script.js"></script>
 </body>
 </html>

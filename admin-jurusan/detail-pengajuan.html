@@ -12,13 +12,13 @@
   <div class="scrim"></div>
   <aside class="sidebar">
     <div class="brand"><strong>SIPIKA</strong><span>Sistem Informasi Perizinan Ketidakhadiran Mahasiswa</span></div>
-    <div class="role-chip"><span class="name">Admin Jurusan </span><span class="role">Admin Jurusan</span></div>
+    <div class="role-chip"><span class="name">Admin Jurusan</span><span class="role">Admin Jurusan</span></div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard.html"><span class="icon">&#9635;</span> Dashboard</a></li>
-      <li><a href="data-perizinan.html" data-page="data-perizinan.html"><span class="icon">&#128203;</span> Data Perizinan</a></li>
-      <li><a href="menunggu-admin.html" data-page="menunggu-admin.html"><span class="icon">&#9203;</span> Pengajuan Menunggu Admin</a></li>
-      <li><a href="rekap.html" data-page="rekap.html"><span class="icon">&#128202;</span> Rekap Perizinan</a></li>
-      <li><a href="riwayat.html" data-page="riwayat.html"><span class="icon">&#128340;</span> Riwayat</a></li>
+      <li><a href="dashboard.html"><span class="icon">&#9635;</span> Dashboard</a></li>
+      <li><a href="data-perizinan.html"><span class="icon">&#128203;</span> Data Perizinan</a></li>
+      <li><a href="menunggu-admin.html"><span class="icon">&#9203;</span> Pengajuan Menunggu Admin</a></li>
+      <li><a href="rekap.html"><span class="icon">&#128202;</span> Rekap Perizinan</a></li>
+      <li><a href="riwayat.html"><span class="icon">&#128340;</span> Riwayat</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">&#128100;</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">&#8630;</span> Logout</a></li>
@@ -30,16 +30,95 @@
       <div class="crumb">Admin Jurusan</div>
     </div>
     <div class="content">
-      <div class="select-demo">
-        <label for="detail-select">Pilih pengajuan (simulasi &mdash; pada versi nyata dipilih otomatis lewat tautan "Lihat Detail")</label>
-        <select id="detail-select" data-detail-select></select>
+      
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Detail Pengajuan — Firly Nurrohman</h2>
+          <span class="badge badge-menunggu">Menunggu Admin Jurusan</span>
+        </div>
+        <div class="stepper">
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Mahasiswa</div>
+            <div class="sub">22/09/2026</div>
+          </div>
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Dosen</div>
+            <div class="sub">22/09/2026</div>
+          </div>
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Ketua Jurusan / Sekjur</div>
+            <div class="sub">22/09/2026</div>
+          </div>
+          <div class="step pending">
+            <div class="line"></div>
+            <div class="dot">&hellip;</div>
+            <div class="label">Admin Jurusan</div>
+            <div class="sub">Menunggu</div>
+          </div>
+        </div>
       </div>
-      <div data-detail-container></div>
+
+      <div class="detail-grid">
+        <div>
+          <div class="panel">
+            <h3>Informasi Mahasiswa</h3>
+            <dl class="kv">
+              <dt>NIM</dt><dd>250115042</dd>
+              <dt>Nama</dt><dd>Firly Nurrohman</dd>
+              <dt>Program Studi</dt><dd>D4 Teknologi Rekayasa Perangkat Lunak</dd>
+            </dl>
+          </div>
+          <div class="panel">
+            <h3>Informasi Pengajuan</h3>
+            <dl class="kv">
+              <dt>Alasan</dt><dd>Sakit</dd>
+              <dt>Tanggal</dt><dd>22/09/2026</dd>
+              <dt>Durasi</dt><dd>= 1 hari (1 hari)</dd>
+            </dl>
+            <div class="doc-preview" style="margin-top:10px;">&#128196; Surat Dokter.pdf <span class="dummy-tag">preview statis</span></div>
+          </div>
+          <div class="panel">
+            <h3>Riwayat Validasi</h3>
+            <div class="kv" style="margin-bottom:10px;">
+              <dt>Dosen</dt>
+              <dd><span class="badge badge-disetujui">Disetujui</span> &middot; Dosen Wali Kelas 2B, 22/09/2026</dd>
+            </div>
+            <div class="kv" style="margin-bottom:10px;">
+              <dt>Ketua Jurusan / Sekjur</dt>
+              <dd><span class="badge badge-disetujui">Disetujui</span> &middot; Sekjur TRPL, 22/09/2026</dd>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="ai-panel">
+            <h3>&#129302; AI Verification Assistant</h3>
+            <div class="ai-check"><span>Kelengkapan Dokumen</span><strong>Lengkap</strong></div>
+            <div class="ai-check"><span>Konsistensi Data</span><strong>Konsisten</strong></div>
+            <p style="margin-top:10px;"><strong>Rekomendasi:</strong> Dokumen pendukung sesuai dengan data pengajuan.</p>
+            <div class="ai-note">Rekomendasi AI bukan keputusan final — keputusan tetap berada pada Dosen, Ketua Jurusan / Sekjur, BAAK, dan pencatatan akhir oleh Admin Jurusan.</div>
+          </div>
+
+          <div class="panel" style="margin-top:16px;">
+            <h3>Aksi Admin Jurusan</h3>
+            <p class="hint">Tindakan administrasi dan pengarsipan surat izin.</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <a href="menunggu-admin.html" class="btn btn-primary btn-sm">Tandai Selesai Diarsipkan</a>
+              <a href="data-perizinan.html" class="btn btn-secondary btn-sm">Kembali ke Data</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
-<script src="../assets/js/script.js"></script>
-<script src="admin-script.js"></script>
 </body>
 </html>

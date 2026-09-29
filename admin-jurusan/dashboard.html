@@ -20,11 +20,11 @@
       <span class="role">Admin Jurusan</span>
     </div>
     <ul class="nav-list">
-      <li><a href="dashboard.html" data-page="dashboard.html"><span class="icon">&#9635;</span> Dashboard</a></li>
-      <li><a href="data-perizinan.html" data-page="data-perizinan.html"><span class="icon">&#128203;</span> Data Perizinan</a></li>
-      <li><a href="menunggu-admin.html" data-page="menunggu-admin.html"><span class="icon">&#9203;</span> Pengajuan Menunggu Admin</a></li>
-      <li><a href="rekap.html" data-page="rekap.html"><span class="icon">&#128202;</span> Rekap Perizinan</a></li>
-      <li><a href="riwayat.html" data-page="riwayat.html"><span class="icon">&#128340;</span> Riwayat</a></li>
+      <li><a href="dashboard.html" class="active"><span class="icon">&#9635;</span> Dashboard</a></li>
+      <li><a href="data-perizinan.html"><span class="icon">&#128203;</span> Data Perizinan</a></li>
+      <li><a href="menunggu-admin.html"><span class="icon">&#9203;</span> Pengajuan Menunggu Admin</a></li>
+      <li><a href="rekap.html"><span class="icon">&#128202;</span> Rekap Perizinan</a></li>
+      <li><a href="riwayat.html"><span class="icon">&#128340;</span> Riwayat</a></li>
       <hr class="nav-divider">
       <li><a href="#"><span class="icon">&#128100;</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">&#8630;</span> Logout</a></li>
@@ -44,7 +44,24 @@
       <h1>Dashboard Admin Jurusan</h1>
       <p class="hint" style="color:var(--muted); margin-bottom:20px;">Ringkasan pengajuan izin ketidakhadiran mahasiswa yang telah melewati tahap validasi.</p>
 
-      <div class="stat-grid" data-stat-grid></div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="label">Total Pengajuan <span class="dummy-tag">dummy</span></div>
+          <div class="value">6</div>
+        </div>
+        <div class="stat-card warning">
+          <div class="label">Menunggu Admin Jurusan</div>
+          <div class="value">2</div>
+        </div>
+        <div class="stat-card success">
+          <div class="label">Disetujui</div>
+          <div class="value">3</div>
+        </div>
+        <div class="stat-card danger">
+          <div class="label">Ditolak</div>
+          <div class="value">1</div>
+        </div>
+      </div>
 
       <div class="panel">
         <div class="panel-head">
@@ -56,7 +73,48 @@
             <thead>
               <tr><th>NIM</th><th>Nama</th><th>Durasi</th><th>Status</th><th>Tahap</th><th>Aksi</th></tr>
             </thead>
-            <tbody data-recent-table></tbody>
+            <tbody>
+              <tr>
+                <td>250115042</td>
+                <td>Firly Nurrohman</td>
+                <td>= 1 hari</td>
+                <td><span class="badge badge-menunggu">Menunggu Admin Jurusan</span></td>
+                <td>Admin Jurusan</td>
+                <td><a class="btn btn-secondary btn-sm" href="detail-pengajuan.html">Lihat Detail</a></td>
+              </tr>
+              <tr>
+                <td>250315778</td>
+                <td>Rahull</td>
+                <td>&gt; 1 hari</td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
+                <td>Selesai — Admin Jurusan</td>
+                <td><a class="btn btn-secondary btn-sm" href="detail-pengajuan.html">Lihat Detail</a></td>
+              </tr>
+              <tr>
+                <td>250122015</td>
+                <td>Salsabila Putri</td>
+                <td>&lt; 1 hari</td>
+                <td><span class="badge badge-menunggu">Menunggu Admin Jurusan</span></td>
+                <td>Admin Jurusan</td>
+                <td><a class="btn btn-secondary btn-sm" href="detail-pengajuan.html">Lihat Detail</a></td>
+              </tr>
+              <tr>
+                <td>250133090</td>
+                <td>Ahmad Fauzan</td>
+                <td>&gt; 1 hari</td>
+                <td><span class="badge badge-disetujui">Disetujui</span></td>
+                <td>Selesai — Admin Jurusan</td>
+                <td><a class="btn btn-secondary btn-sm" href="detail-pengajuan.html">Lihat Detail</a></td>
+              </tr>
+              <tr>
+                <td>250144067</td>
+                <td>Dewi Anggraini</td>
+                <td>= 1 hari</td>
+                <td><span class="badge badge-ditolak">Ditolak</span></td>
+                <td>Berhenti — Ditolak</td>
+                <td><a class="btn btn-secondary btn-sm" href="detail-pengajuan.html">Lihat Detail</a></td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -64,7 +122,5 @@
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
-<script src="../assets/js/script.js"></script>
-<script src="admin-script.js"></script>
 </body>
 </html>
