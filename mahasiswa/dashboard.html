@@ -6,6 +6,59 @@
   <title>Dashboard Mahasiswa — SIPIKA</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .brand span {
+      color: #f1f5f9 !important;
+      opacity: 0.95 !important;
+      font-size: 0.75rem;
+      line-height: 1.3;
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* Topbar & Notifikasi Interaktif */
+    .topbar { display: flex; justify-content: space-between; align-items: center; position: relative; }
+    .topbar-right { display: flex; align-items: center; gap: 16px; position: relative; }
+    .notif-wrapper { position: relative; }
+    .notif-bell { position: relative; cursor: pointer; font-size: 1.2rem; user-select: none; padding: 4px; }
+    .notif-badge {
+      position: absolute; top: -2px; right: -4px;
+      background-color: #ef4444; color: white;
+      font-size: 0.65rem; padding: 2px 5px; border-radius: 10px; font-weight: bold;
+    }
+
+    /* Dropdown Notifikasi */
+    .notif-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 36px;
+      width: 300px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+    .notif-dropdown.show { display: block; }
+    .notif-header { padding: 10px 14px; border-bottom: 1px solid #f3f4f6; font-weight: 600; font-size: 0.875rem; color: #1f2937; display: flex; justify-content: space-between; align-items: center; }
+    .notif-list { max-height: 240px; overflow-y: auto; list-style: none; margin: 0; padding: 0; }
+    .notif-item { padding: 10px 14px; border-bottom: 1px solid #f9fafb; font-size: 0.8rem; color: #4b5563; cursor: pointer; }
+    .notif-item:hover { background-color: #f9fafb; }
+    .notif-item.unread { background-color: #f0fdf4; font-weight: 500; }
+    .notif-item .time { font-size: 0.7rem; color: #9ca3af; margin-top: 2px; }
+
+    /* Grid Kartu Statistik */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card .stat-header { display: flex; justify-content: space-between; align-items: center; }
+    .stat-footer { font-size: 0.75rem; margin-top: 6px; color: #6b7280; }
+    .stat-card.danger { border-left: 4px solid #ef4444; }
+  </style>
 </head>
 <body>
 <div class="app">
@@ -35,25 +88,65 @@
         <button class="hamburger" aria-label="Buka menu">☰</button>
         <span class="crumb">SIPIKA / Mahasiswa / Dashboard</span>
       </div>
-      <div class="crumb">Firly Nurrohman</div>
+      <div class="topbar-right">
+        <!-- Widget Notifikasi Interaktif -->
+        <div class="notif-wrapper">
+          <div class="notif-bell" id="notifBtn" title="Notifikasi Baru">
+            🔔 <span class="notif-badge" id="notifBadge">2</span>
+          </div>
+          <div class="notif-dropdown" id="notifDropdown">
+            <div class="notif-header">
+              <span>Pemberitahuan</span>
+              <small style="color: #2563eb; cursor: pointer;" id="markReadBtn">Tandai Dibaca</small>
+            </div>
+            <ul class="notif-list">
+              <li class="notif-item unread">
+                <div><strong>SPK-2026-001</strong> telah disetujui oleh Dosen.</div>
+                <div class="time">10 menit yang lalu</div>
+              </li>
+              <li class="notif-item unread">
+                <div><strong>SPK-2026-002</strong> berhasil diverifikasi BAAK.</div>
+                <div class="time">1 jam yang lalu</div>
+              </li>
+              <li class="notif-item">
+                <div>Pengajuan izin baru berhasil dikirim.</div>
+                <div class="time">Kemarin</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="crumb">Firly Nurrohman</div>
+      </div>
     </div>
 
     <div class="content">
       <h1>Dashboard Mahasiswa</h1>
       <p class="hint" style="margin-bottom: 20px;">Selamat datang di portal perizinan ketidakhadiran perkuliahan Politeknik Negeri Cilacap.</p>
       
+      <!-- FEEDBACK USER: Banner Notifikasi/Alert -->
+      <div id="feedback-banner"></div>
+
+      <!-- Grid Kartu Statistik -->
       <div class="stat-grid">
         <div class="stat-card">
-          <div class="label">Total Pengajuan</div>
-          <div class="value">3</div>
+          <div class="stat-header"><div class="label">Total Pengajuan</div><span>📑</span></div>
+          <div class="value" id="stat-total">0</div>
+          <div class="stat-footer">Keseluruhan izin diajukan</div>
         </div>
         <div class="stat-card warning">
-          <div class="label">Sedang Diproses</div>
-          <div class="value">1</div>
+          <div class="stat-header"><div class="label">Sedang Diproses</div><span>⏳</span></div>
+          <div class="value" id="stat-proses">0</div>
+          <div class="stat-footer">Menunggu verifikasi</div>
         </div>
         <div class="stat-card success">
-          <div class="label">Disetujui</div>
-          <div class="value">2</div>
+          <div class="stat-header"><div class="label">Disetujui</div><span>✅</span></div>
+          <div class="value" id="stat-setuju">0</div>
+          <div class="stat-footer">Izin diterima</div>
+        </div>
+        <div class="stat-card danger">
+          <div class="stat-header"><div class="label">Ditolak</div><span>❌</span></div>
+          <div class="value" id="stat-tolak">0</div>
+          <div class="stat-footer">Tidak disetujui</div>
         </div>
       </div>
 
@@ -65,7 +158,7 @@
 
       <div class="panel">
         <h2>Ringkasan Alur Perizinan Otomatis</h2>
-        <p class="text-sm text-muted">Di SIPIKA, Anda <strong>tidak perlu memilih validator</strong> secara manual. Sistem akan secara otomatis menentukan alur persetujuan berdasarkan durasi ketidakhadiran yang diajukan:</p>
+        <p class="text-sm text-muted">Sistem akan secara otomatis menentukan alur persetujuan berdasarkan durasi ketidakhadiran yang diajukan:</p>
         <div class="rule-box my-2">
           <ul>
             <li><strong>&lt; 1 Hari:</strong> Mahasiswa &rarr; Dosen &rarr; Admin Jurusan</li>
@@ -78,5 +171,60 @@
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
+
+<script>
+  function initData() {
+    if (!localStorage.getItem('sipika_data')) {
+      const defaultData = [
+        { kode: 'SPK-2026-001', jenis: 'Sakit', tgl: '22/09/2026', durasi: '= 1 Hari', status: 'Menunggu Admin Jurusan', bg: 'warning', alur: 'Dosen (✓) → Kajur (✓) → Admin (⏳)' },
+        { kode: 'SPK-2026-002', jenis: 'Izin Keluarga', tgl: '13/09/2026', durasi: '> 1 Hari', status: 'Disetujui', bg: 'success', alur: 'Dosen (✓) → Kajur (✓) → BAAK (✓) → Admin (✓)' },
+        { kode: 'SPK-2026-003', jenis: 'Izin Pulang Cepat', tgl: '18/09/2026', durasi: '< 1 Hari', status: 'Menunggu Admin Jurusan', bg: 'warning', alur: 'Dosen (✓) → Admin (⏳)' }
+      ];
+      localStorage.setItem('sipika_data', JSON.stringify(defaultData));
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initData();
+    const data = JSON.parse(localStorage.getItem('sipika_data')) || [];
+    
+    // Update Statistik
+    document.getElementById('stat-total').innerText = data.length;
+    document.getElementById('stat-proses').innerText = data.filter(i => i.status.includes('Menunggu') || i.status.includes('Proses')).length;
+    document.getElementById('stat-setuju').innerText = data.filter(i => i.status === 'Disetujui').length;
+    document.getElementById('stat-tolak').innerText = data.filter(i => i.status === 'Ditolak').length;
+
+    // Feedback User Alert
+    if (sessionStorage.getItem('flash_msg')) {
+      document.getElementById('feedback-banner').innerHTML = `
+        <div style="background-color: #d1fae5; color: #065f46; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #10b981; display: flex; justify-content: space-between; align-items: center;">
+          <span>📌 <strong>Berhasil!</strong> ${sessionStorage.getItem('flash_msg')}</span>
+          <button onclick="this.parentElement.remove()" style="background:none; border:none; color:#065f46; font-weight:bold; cursor:pointer;">✕</button>
+        </div>
+      `;
+      sessionStorage.removeItem('flash_msg');
+    }
+
+    // Toggle Dropdown Notifikasi
+    const notifBtn = document.getElementById('notifBtn');
+    const notifDropdown = document.getElementById('notifDropdown');
+    const markReadBtn = document.getElementById('markReadBtn');
+    const notifBadge = document.getElementById('notifBadge');
+
+    notifBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      notifDropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', () => {
+      notifDropdown.classList.remove('show');
+    });
+
+    markReadBtn.addEventListener('click', () => {
+      document.querySelectorAll('.notif-item.unread').forEach(el => el.classList.remove('unread'));
+      notifBadge.style.display = 'none';
+    });
+  });
+</script>
 </body>
 </html>
