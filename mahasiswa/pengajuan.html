@@ -106,22 +106,34 @@
             <div class="form-group">
               <label for="tgl-mulai">Tanggal Mulai <span class="text-red">*</span></label>
               <input type="date" id="tgl-mulai" required>
-              <span class="error-msg" id="err-tgl-mulai">Tanggal tidak boleh kurang dari hari ini!</span>
+              <span class="error-msg" id="err-tgl-mulai">Tanggal mulai tidak boleh sebelum hari ini.</span>
             </div>
+            <div class="form-group">
+              <label for="jam-mulai">Jam Mulai <span class="text-red">*</span></label>
+              <input type="time" id="jam-mulai" required>
+            </div>
+          </div>
+          <div class="form-row">
             <div class="form-group">
               <label for="tgl-selesai">Tanggal Selesai <span class="text-red">*</span></label>
               <input type="date" id="tgl-selesai" required>
             </div>
+            <div class="form-group">
+              <label for="jam-selesai">Jam Selesai <span class="text-red">*</span></label>
+              <input type="time" id="jam-selesai" required>
+            </div>
+          </div>
+          <div class="rule-box" id="durasi-preview" aria-live="polite" style="margin-bottom:16px;">
+            <strong>Durasi izin:</strong> Lengkapi tanggal dan jam mulai serta selesai untuk melihat durasi dan alur validasi.
           </div>
 
           <div class="workflow-preview">
             <label><strong>Visualisasi Alur Approval Otomatis:</strong></label>
             <p class="text-sm text-muted">Sistem menentukan alur sequential otomatis berdasarkan durasi perizinan Anda.</p>
-            <div class="stepper">
+            <div class="stepper" id="workflow-preview" aria-live="polite">
               <div class="step active"><div class="line"></div><div class="dot">1</div><div class="label">Mahasiswa</div></div>
               <div class="step"><div class="line"></div><div class="dot">2</div><div class="label">Dosen</div></div>
-              <div class="step"><div class="line"></div><div class="dot">3</div><div class="label">Ketua Jurusan / Sekjur</div></div>
-              <div class="step"><div class="line"></div><div class="dot">4</div><div class="label">Admin Jurusan</div></div>
+              <div class="step"><div class="line"></div><div class="dot">3</div><div class="label">Admin Jurusan</div></div>
             </div>
           </div>
 
@@ -133,6 +145,7 @@
           <div class="form-group">
             <label for="bukti">Unggah Bukti Pendukung (Surat Dokter/Surat Tugas) <span class="text-red">*</span></label>
             <input type="file" id="bukti" accept=".pdf,.png,.jpg,.jpeg" required>
+            <span class="error-msg" id="err-bukti">Pilih file PDF, JPG, atau PNG dengan ukuran maksimal 2MB.</span>
             <p class="text-sm text-muted" style="margin-top: 4px;">Format berkas: PDF, JPG, PNG (Maks. 2MB)</p>
           </div>
 
@@ -147,73 +160,6 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // 1. Kunci Tanggal (Tidak Boleh Mundur)
-    const today = new Date().toISOString().split('T')[0];
-    const tglMulai = document.getElementById('tgl-mulai');
-    const tglSelesai = document.getElementById('tgl-selesai');
-
-    tglMulai.min = today;
-    tglMulai.value = today;
-    tglSelesai.min = today;
-    tglSelesai.value = today;
-
-    tglMulai.addEventListener('change', () => {
-      if (tglMulai.value < today) {
-        tglMulai.classList.add('field-error');
-        document.getElementById('err-tgl-mulai').style.display = 'block';
-        tglMulai.value = today;
-      } else {
-        tglMulai.classList.remove('field-error');
-        document.getElementById('err-tgl-mulai').style.display = 'none';
-      }
-      tglSelesai.min = tglMulai.value;
-      if (tglSelesai.value < tglMulai.value) tglSelesai.value = tglMulai.value;
-    });
-
-    // 2. Form Submit & Auto-Rekap
-    document.getElementById('form-pengajuan').addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const jenis = document.getElementById('jenis').value;
-      const startDate = new Date(tglMulai.value);
-      const endDate = new Date(tglSelesai.value);
-      const diffDays = Math.ceil(Math.abs(endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
-
-      let durasiLabel = `= 1 Hari`;
-      let alurText = `Dosen (⏳) → Kajur → Admin`;
-      if (diffDays > 1) {
-        durasiLabel = `> 1 Hari (${diffDays} Hari)`;
-        alurText = `Dosen (⏳) → Kajur → BAAK → Admin`;
-      }
-
-      const randomNum = Math.floor(100 + Math.random() * 900);
-      const newTicket = {
-        kode: `SPK-2026-${randomNum}`,
-        jenis: jenis,
-        tgl: tglMulai.value.split('-').reverse().join('/'),
-        durasi: durasiLabel,
-        status: 'Menunggu Dosen',
-        bg: 'warning',
-        alur: alurText
-      };
-
-      const existingData = JSON.parse(localStorage.getItem('sipika_data')) || [];
-      existingData.unshift(newTicket);
-      localStorage.setItem('sipika_data', JSON.stringify(existingData));
-
-      // FEEDBACK USER: Set Flash Message
-      sessionStorage.setItem('flash_msg', `Pengajuan izin dengan kode ${newTicket.kode} berhasil dikirim!`);
-      window.location.href = 'riwayat.html';
-    });
-
-    // Notifikasi Dropdown
-    const notifBtn = document.getElementById('notifBtn');
-    const notifDropdown = document.getElementById('notifDropdown');
-    notifBtn.addEventListener('click', (e) => { e.stopPropagation(); notifDropdown.classList.toggle('show'); });
-    document.addEventListener('click', () => { notifDropdown.classList.remove('show'); });
-  });
-</script>
+<script src="../assets/js/mahasiswa.js"></script>
 </body>
 </html>
