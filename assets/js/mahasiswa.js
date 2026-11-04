@@ -28,6 +28,8 @@
   const KEY_PENGAJUAN = 'sipika_mahasiswa_pengajuan';
   const KEY_NOTIF = 'sipika_mahasiswa_notifikasi';
   const KEY_FLASH = 'sipika_mahasiswa_flash'; // sessionStorage
+  const KEY_VERSI = 'sipika_mahasiswa_versi';
+  const VERSI_DATA = 2; // naikkan bila struktur/isi data awal berubah
 
   const PROFIL = { nama: 'Firly Nurrohman', nim: '250115042' };
 
@@ -157,7 +159,7 @@
         tanggalMulai: '2026-09-18T10:00', tanggalSelesai: '2026-09-18T14:00',
         alasan: 'Mengurus dokumen kependudukan yang harus dilakukan langsung.',
         dokumen: 'bukti-antrean-dukcapil.jpg',
-        tahapSelesai: 1, status: 'Menunggu Admin Jurusan',
+        tahapSelesai: 2, status: 'Selesai Diarsipkan',
         diajukanPada: '2026-09-17T15:40:00'
       },
       {
@@ -165,7 +167,7 @@
         tanggalMulai: '2026-09-22T08:00', tanggalSelesai: '2026-09-23T08:00',
         alasan: 'Demam tinggi dan disarankan istirahat penuh oleh dokter.',
         dokumen: 'surat-dokter.pdf',
-        tahapSelesai: 2, status: 'Menunggu Admin Jurusan',
+        tahapSelesai: 3, status: 'Disetujui',
         diajukanPada: '2026-09-21T19:30:00'
       },
       {
@@ -173,7 +175,8 @@
         tanggalMulai: '2026-10-20T08:00', tanggalSelesai: '2026-10-21T08:00',
         alasan: 'Mendampingi anggota keluarga yang menjalani tindakan medis.',
         dokumen: 'surat-rumah-sakit.pdf',
-        tahapSelesai: 1, status: 'Menunggu Validasi Ketua Jurusan/Sekjur',
+        tahapSelesai: 1, status: 'Ditolak',
+        catatanPenolakan: 'Dokumen pendukung kurang jelas. Mohon unggah ulang surat yang terbaca.',
         diajukanPada: '2026-10-19T20:05:00'
       },
       {
@@ -181,13 +184,23 @@
         tanggalMulai: '2026-11-03T13:00', tanggalSelesai: '2026-11-03T16:00',
         alasan: 'Sakit kepala berat sehingga tidak dapat mengikuti perkuliahan sore.',
         dokumen: 'surat-dokter-klinik.pdf',
-        tahapSelesai: 0, status: 'Menunggu Validasi Dosen',
+        tahapSelesai: 2, status: 'Disetujui',
         diajukanPada: '2026-11-03T08:30:00'
       }
     ].map(lengkapiPengajuan);
   }
 
+  /** Jika versi data tersimpan berbeda, data awal dimuat ulang (hanya key Mahasiswa). */
+  function pastikanVersi() {
+    if (U.storage.baca(KEY_VERSI, null) !== VERSI_DATA) {
+      U.storage.hapus(KEY_PENGAJUAN);
+      U.storage.hapus(KEY_NOTIF);
+      U.storage.tulis(KEY_VERSI, VERSI_DATA);
+    }
+  }
+
   function muatPengajuan() {
+    pastikanVersi();
     const tersimpan = U.storage.baca(KEY_PENGAJUAN, null);
     if (Array.isArray(tersimpan)) return tersimpan;
 
@@ -205,6 +218,14 @@
     return data.slice().sort(function (a, b) {
       return new Date(b.diajukanPada) - new Date(a.diajukanPada);
     });
+  }
+
+  /**
+   * Batasan: hanya boleh ada satu pengajuan yang masih diproses.
+   * Mengembalikan pengajuan aktif (status "Menunggu ...") atau undefined.
+   */
+  function cariPengajuanAktif(data) {
+    return data.find(function (item) { return kelompokStatus(item.status) === 'proses'; });
   }
 
   function buatKodeTiket(data) {
@@ -243,13 +264,14 @@
     const sekarang = Date.now();
     function lalu(menit) { return new Date(sekarang - menit * 60000).toISOString(); }
     return [
-      { id: 'n-awal-1', kodeTiket: 'SPK-2026-005', pesan: 'telah divalidasi Dosen. Menunggu Ketua Jurusan/Sekjur.', waktu: lalu(10), dibaca: false },
-      { id: 'n-awal-2', kodeTiket: 'SPK-2026-003', pesan: 'telah divalidasi Dosen. Menunggu Admin Jurusan.', waktu: lalu(60), dibaca: false },
-      { id: 'n-awal-3', kodeTiket: 'SPK-2026-006', pesan: 'berhasil dikirim dan menunggu validasi Dosen.', waktu: lalu(180), dibaca: true }
+      { id: 'n-awal-1', kodeTiket: 'SPK-2026-005', pesan: 'ditolak oleh Ketua Jurusan/Sekjur. Lihat catatan pada detail pengajuan.', waktu: lalu(10), dibaca: false },
+      { id: 'n-awal-2', kodeTiket: 'SPK-2026-004', pesan: 'telah disetujui oleh Admin Jurusan.', waktu: lalu(60), dibaca: false },
+      { id: 'n-awal-3', kodeTiket: 'SPK-2026-006', pesan: 'telah disetujui oleh Admin Jurusan.', waktu: lalu(180), dibaca: true }
     ];
   }
 
   function muatNotif() {
+    pastikanVersi();
     const tersimpan = U.storage.baca(KEY_NOTIF, null);
     if (Array.isArray(tersimpan)) return tersimpan;
     const awal = notifAwal();
@@ -720,10 +742,34 @@
       validasi('bukti', true);
     });
 
+    /* ---------- Batasan: satu pengajuan aktif ---------- */
+
+    function tampilkanKunci(aktif) {
+      U.banner(alertForm, {
+        tipe: 'warning',
+        judul: 'Pengajuan baru belum dapat dibuat.',
+        pesan: 'Pengajuan ' + aktif.kodeTiket + ' masih berstatus "' + aktif.status +
+          '". Anda dapat mengajukan lagi setelah pengajuan tersebut selesai diproses.',
+        tautan: { teks: 'Lihat riwayat', href: 'riwayat.html' }
+      });
+    }
+
+    function kunciForm(aktif) {
+      tampilkanKunci(aktif);
+      form.querySelectorAll('input, select, textarea, button').forEach(function (el) { el.disabled = true; });
+      form.classList.add('terkunci');
+    }
+
+    const aktifAwal = cariPengajuanAktif(muatPengajuan());
+    if (aktifAwal) kunciForm(aktifAwal);
+
     /* ---------- Submit ---------- */
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      const aktif = cariPengajuanAktif(muatPengajuan());
+      if (aktif) { kunciForm(aktif); return; }
+
       sudahCoba = true;
       alertForm.innerHTML = '';
 
@@ -788,6 +834,12 @@
 
     function kirimPengajuan(ringkasan, hasil, tombolKonfirmasi) {
       const data = muatPengajuan();
+      const aktif = cariPengajuanAktif(data);
+      if (aktif) {
+        U.tutupModal();
+        kunciForm(aktif);
+        return;
+      }
       const pengajuan = {
         kodeTiket: buatKodeTiket(data),
         nim: PROFIL.nim,

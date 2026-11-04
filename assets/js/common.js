@@ -128,6 +128,15 @@
       teks.appendChild(document.createTextNode(' '));
     }
     teks.appendChild(document.createTextNode(opsi.pesan || ''));
+    if (opsi.tautan) {
+      teks.appendChild(document.createTextNode(' '));
+      const a = SIPIKA.buatElemen('a', '', opsi.tautan.teks);
+      a.href = opsi.tautan.href;
+      a.style.fontWeight = '700';
+      a.style.color = 'inherit';
+      a.style.textDecoration = 'underline';
+      teks.appendChild(a);
+    }
 
     const tutup = SIPIKA.buatElemen('button', '', '✕');
     tutup.type = 'button';
