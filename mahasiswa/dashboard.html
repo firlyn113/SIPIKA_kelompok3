@@ -172,6 +172,59 @@
   </div>
 </div>
 
-<script src="../assets/js/mahasiswa.js"></script>
+<script>
+  function initData() {
+    if (!localStorage.getItem('sipika_data')) {
+      const defaultData = [
+        { kode: 'SPK-2026-001', jenis: 'Sakit', tgl: '22/09/2026', durasi: '= 1 Hari', status: 'Menunggu Admin Jurusan', bg: 'warning', alur: 'Dosen (✓) → Kajur (✓) → Admin (⏳)' },
+        { kode: 'SPK-2026-002', jenis: 'Izin Keluarga', tgl: '13/09/2026', durasi: '> 1 Hari', status: 'Disetujui', bg: 'success', alur: 'Dosen (✓) → Kajur (✓) → BAAK (✓) → Admin (✓)' },
+        { kode: 'SPK-2026-003', jenis: 'Izin Pulang Cepat', tgl: '18/09/2026', durasi: '< 1 Hari', status: 'Menunggu Admin Jurusan', bg: 'warning', alur: 'Dosen (✓) → Admin (⏳)' }
+      ];
+      localStorage.setItem('sipika_data', JSON.stringify(defaultData));
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initData();
+    const data = JSON.parse(localStorage.getItem('sipika_data')) || [];
+    
+    // Update Statistik
+    document.getElementById('stat-total').innerText = data.length;
+    document.getElementById('stat-proses').innerText = data.filter(i => i.status.includes('Menunggu') || i.status.includes('Proses')).length;
+    document.getElementById('stat-setuju').innerText = data.filter(i => i.status === 'Disetujui').length;
+    document.getElementById('stat-tolak').innerText = data.filter(i => i.status === 'Ditolak').length;
+
+    // Feedback User Alert
+    if (sessionStorage.getItem('flash_msg')) {
+      document.getElementById('feedback-banner').innerHTML = `
+        <div style="background-color: #d1fae5; color: #065f46; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #10b981; display: flex; justify-content: space-between; align-items: center;">
+          <span>📌 <strong>Berhasil!</strong> ${sessionStorage.getItem('flash_msg')}</span>
+          <button onclick="this.parentElement.remove()" style="background:none; border:none; color:#065f46; font-weight:bold; cursor:pointer;">✕</button>
+        </div>
+      `;
+      sessionStorage.removeItem('flash_msg');
+    }
+
+    // Toggle Dropdown Notifikasi
+    const notifBtn = document.getElementById('notifBtn');
+    const notifDropdown = document.getElementById('notifDropdown');
+    const markReadBtn = document.getElementById('markReadBtn');
+    const notifBadge = document.getElementById('notifBadge');
+
+    notifBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      notifDropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', () => {
+      notifDropdown.classList.remove('show');
+    });
+
+    markReadBtn.addEventListener('click', () => {
+      document.querySelectorAll('.notif-item.unread').forEach(el => el.classList.remove('unread'));
+      notifBadge.style.display = 'none';
+    });
+  });
+</script>
 </body>
 </html>

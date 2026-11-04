@@ -83,23 +83,6 @@
       <div class="panel">
         <h2>Riwayat Pengajuan Perizinan</h2>
         
-        <div class="form-row" style="margin-bottom:14px;">
-          <div class="form-group" style="margin-bottom:0;">
-            <label for="cari-riwayat">Cari pengajuan</label>
-            <input type="search" id="cari-riwayat" placeholder="Cari kode tiket atau jenis izin...">
-          </div>
-          <div class="form-group" style="margin-bottom:0;">
-            <label for="filter-status">Filter status</label>
-            <select id="filter-status">
-              <option value="">Semua Status</option>
-              <option value="Menunggu">Menunggu Validasi</option>
-              <option value="Disetujui">Disetujui</option>
-              <option value="Ditolak">Ditolak</option>
-              <option value="Selesai Diarsipkan">Selesai Diarsipkan</option>
-            </select>
-          </div>
-        </div>
-        <p id="jumlah-riwayat" class="text-sm text-muted" style="margin-bottom:10px;"></p>
         <div class="table-wrap">
           <table>
             <thead>
@@ -124,8 +107,31 @@
         <h2>Pelacakan Status Pengajuan Terkini</h2>
         <p class="hint" style="margin-bottom: 16px;">Alur approval sequential perizinan ketidakhadiran aktif.</p>
         
-        <div id="pelacakan-terkini">
-          <p class="text-sm text-muted">Belum ada pengajuan untuk dilacak.</p>
+        <div class="stepper">
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Mahasiswa</div>
+            <div class="sub">Mengajukan</div>
+          </div>
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Dosen</div>
+            <div class="sub">Disetujui</div>
+          </div>
+          <div class="step completed">
+            <div class="line"></div>
+            <div class="dot">&#10003;</div>
+            <div class="label">Ketua Jurusan / Sekjur</div>
+            <div class="sub">Disetujui</div>
+          </div>
+          <div class="step pending">
+            <div class="line"></div>
+            <div class="dot">&hellip;</div>
+            <div class="label">Admin Jurusan</div>
+            <div class="sub">Menunggu Pengarsipan</div>
+          </div>
         </div>
       </div>
 
@@ -134,6 +140,47 @@
   </div>
 </div>
 
-<script src="../assets/js/mahasiswa.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // FEEDBACK USER: Banner Alert Sukses saat dialihkan dari Form
+    const msg = sessionStorage.getItem('flash_msg');
+    if (msg) {
+      document.getElementById('alert-container').innerHTML = `
+        <div style="background-color: #d1fae5; color: #065f46; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #10b981; display: flex; justify-content: space-between; align-items: center;">
+          <span>✅ <strong>Pengajuan Berhasil Ditambahkan!</strong> ${msg}</span>
+          <button onclick="this.parentElement.remove()" style="background:none; border:none; color:#065f46; font-weight:bold; cursor:pointer;">✕</button>
+        </div>
+      `;
+      sessionStorage.removeItem('flash_msg');
+    }
+
+    // FEEDBACK USER: Rendering Data atau Empty State jika Kosong
+    const data = JSON.parse(localStorage.getItem('sipika_data')) || [];
+    const tbody = document.getElementById('table-body');
+
+    if (data.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 24px; color: #6b7280;">Belum ada riwayat pengajuan izin.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = data.map((item, index) => `
+      <tr>
+        <td>${index + 1}</td>
+        <td><strong>${item.kode}</strong></td>
+        <td>${item.jenis}</td>
+        <td>${item.tgl}</td>
+        <td>${item.durasi}</td>
+        <td><span class="badge badge-${item.bg}">${item.status}</span></td>
+        <td style="font-size: 0.85rem; color: #4b5563;">${item.alur}</td>
+      </tr>
+    `).join('');
+
+    // Notifikasi
+    const notifBtn = document.getElementById('notifBtn');
+    const notifDropdown = document.getElementById('notifDropdown');
+    notifBtn.addEventListener('click', (e) => { e.stopPropagation(); notifDropdown.classList.toggle('show'); });
+    document.addEventListener('click', () => { notifDropdown.classList.remove('show'); });
+  });
+</script>
 </body>
 </html>
