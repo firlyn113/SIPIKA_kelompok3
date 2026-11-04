@@ -27,9 +27,12 @@
     /* FEEDBACK USER: Form Validation Styles */
     .field-error { border-color: #ef4444 !important; background-color: #fef2f2 !important; }
     .error-msg { color: #dc2626; font-size: 0.75rem; margin-top: 4px; display: none; }
+    input[type="datetime-local"] { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-size: .88rem; font-family: var(--font); background: var(--surface); color: var(--ink); outline: none; transition: border-color .2s; }
+    input[type="datetime-local"]:focus { border-color: var(--primary); }
+    .char-count { font-size: .75rem; color: var(--muted); text-align: right; margin-top: 4px; }
   </style>
 </head>
-<body>
+<body data-page="pengajuan">
 <div class="app">
   <div class="scrim"></div>
   <aside class="sidebar">
@@ -46,7 +49,7 @@
       <li><a href="pengajuan.html" class="active"><span class="icon">➕</span> Ajukan Izin</a></li>
       <li><a href="riwayat.html"><span class="icon">📜</span> Riwayat Pengajuan</a></li>
       <hr class="nav-divider">
-      <li><a href="#"><span class="icon">👤</span> Profil</a></li>
+      <li><a href="#" id="link-profil"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
     </ul>
   </aside>
@@ -60,23 +63,14 @@
       <div class="topbar-right">
         <div class="notif-wrapper">
           <div class="notif-bell" id="notifBtn" title="Notifikasi Baru">
-            🔔 <span class="notif-badge" id="notifBadge">2</span>
+            🔔 <span class="notif-badge" id="notifBadge">0</span>
           </div>
           <div class="notif-dropdown" id="notifDropdown">
             <div class="notif-header">
               <span>Pemberitahuan</span>
               <small style="color: #2563eb; cursor: pointer;" id="markReadBtn">Tandai Dibaca</small>
             </div>
-            <ul class="notif-list">
-              <li class="notif-item unread">
-                <div><strong>SPK-2026-001</strong> telah disetujui oleh Dosen.</div>
-                <div class="time">10 menit yang lalu</div>
-              </li>
-              <li class="notif-item unread">
-                <div><strong>SPK-2026-002</strong> berhasil diverifikasi BAAK.</div>
-                <div class="time">1 jam yang lalu</div>
-              </li>
-            </ul>
+            <ul class="notif-list"></ul>
           </div>
         </div>
         <div class="crumb">Firly Nurrohman</div>
@@ -90,50 +84,51 @@
         <!-- FEEDBACK USER: Alert Peringatan Form -->
         <div id="form-alert"></div>
 
-        <form id="form-pengajuan">
+        <form id="form-pengajuan" novalidate>
           <div class="form-group">
             <label for="jenis">Jenis Perizinan <span class="text-red">*</span></label>
             <select id="jenis" required>
-              <option value="">-- Pilih Jenis Perizinan --</option>
-              <option value="Sakit" selected>Sakit</option>
+              <option value="" selected>-- Pilih Jenis Perizinan --</option>
+              <option value="Sakit">Sakit</option>
               <option value="Izin Alasan Penting">Izin Alasan Penting</option>
               <option value="Tugas Kampus / Lomba">Tugas Kampus / Lomba</option>
             </select>
+            <span class="error-msg" id="err-jenis"></span>
           </div>
-          
-          <!-- Tanggal Terkunci (Gabole Mundur) -->
+
           <div class="form-row">
             <div class="form-group">
-              <label for="tgl-mulai">Tanggal Mulai <span class="text-red">*</span></label>
-              <input type="date" id="tgl-mulai" required>
-              <span class="error-msg" id="err-tgl-mulai">Tanggal tidak boleh kurang dari hari ini!</span>
+              <label for="tgl-mulai">Tanggal &amp; Jam Mulai <span class="text-red">*</span></label>
+              <input type="datetime-local" id="tgl-mulai" required>
+              <span class="error-msg" id="err-tgl-mulai"></span>
             </div>
             <div class="form-group">
-              <label for="tgl-selesai">Tanggal Selesai <span class="text-red">*</span></label>
-              <input type="date" id="tgl-selesai" required>
+              <label for="tgl-selesai">Tanggal &amp; Jam Selesai <span class="text-red">*</span></label>
+              <input type="datetime-local" id="tgl-selesai" required>
+              <span class="error-msg" id="err-tgl-selesai"></span>
             </div>
           </div>
+
+          <div class="rule-box" id="durasi-info" aria-live="polite" style="margin-bottom: 16px;"></div>
 
           <div class="workflow-preview">
             <label><strong>Visualisasi Alur Approval Otomatis:</strong></label>
             <p class="text-sm text-muted">Sistem menentukan alur sequential otomatis berdasarkan durasi perizinan Anda.</p>
-            <div class="stepper">
-              <div class="step active"><div class="line"></div><div class="dot">1</div><div class="label">Mahasiswa</div></div>
-              <div class="step"><div class="line"></div><div class="dot">2</div><div class="label">Dosen</div></div>
-              <div class="step"><div class="line"></div><div class="dot">3</div><div class="label">Ketua Jurusan / Sekjur</div></div>
-              <div class="step"><div class="line"></div><div class="dot">4</div><div class="label">Admin Jurusan</div></div>
-            </div>
+            <div id="stepper-preview"></div>
           </div>
 
           <div class="form-group">
             <label for="alasan">Alasan Ketidakhadiran <span class="text-red">*</span></label>
-            <textarea id="alasan" rows="4" required placeholder="Jelaskan alasan ketidakhadiran Anda secara formal...">Dengan hormat, saya memohon izin tidak dapat mengikuti kegiatan perkuliahan dikarenakan kondisi kesehatan yang kurang baik.</textarea>
+            <textarea id="alasan" rows="4" maxlength="500" required placeholder="Jelaskan alasan ketidakhadiran Anda secara formal..."></textarea>
+            <div class="char-count" id="alasan-counter"></div>
+            <span class="error-msg" id="err-alasan"></span>
           </div>
 
           <div class="form-group">
             <label for="bukti">Unggah Bukti Pendukung (Surat Dokter/Surat Tugas) <span class="text-red">*</span></label>
             <input type="file" id="bukti" accept=".pdf,.png,.jpg,.jpeg" required>
-            <p class="text-sm text-muted" style="margin-top: 4px;">Format berkas: PDF, JPG, PNG (Maks. 2MB)</p>
+            <p class="text-sm text-muted" id="bukti-info" style="margin-top: 4px;">Format berkas: PDF, JPG, PNG (Maks. 2MB)</p>
+            <span class="error-msg" id="err-bukti"></span>
           </div>
 
           <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
@@ -147,73 +142,7 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // 1. Kunci Tanggal (Tidak Boleh Mundur)
-    const today = new Date().toISOString().split('T')[0];
-    const tglMulai = document.getElementById('tgl-mulai');
-    const tglSelesai = document.getElementById('tgl-selesai');
-
-    tglMulai.min = today;
-    tglMulai.value = today;
-    tglSelesai.min = today;
-    tglSelesai.value = today;
-
-    tglMulai.addEventListener('change', () => {
-      if (tglMulai.value < today) {
-        tglMulai.classList.add('field-error');
-        document.getElementById('err-tgl-mulai').style.display = 'block';
-        tglMulai.value = today;
-      } else {
-        tglMulai.classList.remove('field-error');
-        document.getElementById('err-tgl-mulai').style.display = 'none';
-      }
-      tglSelesai.min = tglMulai.value;
-      if (tglSelesai.value < tglMulai.value) tglSelesai.value = tglMulai.value;
-    });
-
-    // 2. Form Submit & Auto-Rekap
-    document.getElementById('form-pengajuan').addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const jenis = document.getElementById('jenis').value;
-      const startDate = new Date(tglMulai.value);
-      const endDate = new Date(tglSelesai.value);
-      const diffDays = Math.ceil(Math.abs(endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
-
-      let durasiLabel = `= 1 Hari`;
-      let alurText = `Dosen (⏳) → Kajur → Admin`;
-      if (diffDays > 1) {
-        durasiLabel = `> 1 Hari (${diffDays} Hari)`;
-        alurText = `Dosen (⏳) → Kajur → BAAK → Admin`;
-      }
-
-      const randomNum = Math.floor(100 + Math.random() * 900);
-      const newTicket = {
-        kode: `SPK-2026-${randomNum}`,
-        jenis: jenis,
-        tgl: tglMulai.value.split('-').reverse().join('/'),
-        durasi: durasiLabel,
-        status: 'Menunggu Dosen',
-        bg: 'warning',
-        alur: alurText
-      };
-
-      const existingData = JSON.parse(localStorage.getItem('sipika_data')) || [];
-      existingData.unshift(newTicket);
-      localStorage.setItem('sipika_data', JSON.stringify(existingData));
-
-      // FEEDBACK USER: Set Flash Message
-      sessionStorage.setItem('flash_msg', `Pengajuan izin dengan kode ${newTicket.kode} berhasil dikirim!`);
-      window.location.href = 'riwayat.html';
-    });
-
-    // Notifikasi Dropdown
-    const notifBtn = document.getElementById('notifBtn');
-    const notifDropdown = document.getElementById('notifDropdown');
-    notifBtn.addEventListener('click', (e) => { e.stopPropagation(); notifDropdown.classList.toggle('show'); });
-    document.addEventListener('click', () => { notifDropdown.classList.remove('show'); });
-  });
-</script>
+<script src="../assets/js/common.js"></script>
+<script src="../assets/js/mahasiswa.js"></script>
 </body>
 </html>

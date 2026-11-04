@@ -60,7 +60,7 @@
     .stat-card.danger { border-left: 4px solid #ef4444; }
   </style>
 </head>
-<body>
+<body data-page="dashboard">
 <div class="app">
   <div class="scrim"></div>
   <aside class="sidebar">
@@ -77,7 +77,7 @@
       <li><a href="pengajuan.html"><span class="icon">➕</span> Ajukan Izin</a></li>
       <li><a href="riwayat.html"><span class="icon">📜</span> Riwayat Pengajuan</a></li>
       <hr class="nav-divider">
-      <li><a href="#"><span class="icon">👤</span> Profil</a></li>
+      <li><a href="#" id="link-profil"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
     </ul>
   </aside>
@@ -92,27 +92,14 @@
         <!-- Widget Notifikasi Interaktif -->
         <div class="notif-wrapper">
           <div class="notif-bell" id="notifBtn" title="Notifikasi Baru">
-            🔔 <span class="notif-badge" id="notifBadge">2</span>
+            🔔 <span class="notif-badge" id="notifBadge">0</span>
           </div>
           <div class="notif-dropdown" id="notifDropdown">
             <div class="notif-header">
               <span>Pemberitahuan</span>
               <small style="color: #2563eb; cursor: pointer;" id="markReadBtn">Tandai Dibaca</small>
             </div>
-            <ul class="notif-list">
-              <li class="notif-item unread">
-                <div><strong>SPK-2026-001</strong> telah disetujui oleh Dosen.</div>
-                <div class="time">10 menit yang lalu</div>
-              </li>
-              <li class="notif-item unread">
-                <div><strong>SPK-2026-002</strong> berhasil diverifikasi BAAK.</div>
-                <div class="time">1 jam yang lalu</div>
-              </li>
-              <li class="notif-item">
-                <div>Pengajuan izin baru berhasil dikirim.</div>
-                <div class="time">Kemarin</div>
-              </li>
-            </ul>
+            <ul class="notif-list"></ul>
           </div>
         </div>
         <div class="crumb">Firly Nurrohman</div>
@@ -128,22 +115,22 @@
 
       <!-- Grid Kartu Statistik -->
       <div class="stat-grid">
-        <div class="stat-card">
+        <div class="stat-card" data-filter="semua">
           <div class="stat-header"><div class="label">Total Pengajuan</div><span>📑</span></div>
           <div class="value" id="stat-total">0</div>
           <div class="stat-footer">Keseluruhan izin diajukan</div>
         </div>
-        <div class="stat-card warning">
+        <div class="stat-card warning" data-filter="proses">
           <div class="stat-header"><div class="label">Sedang Diproses</div><span>⏳</span></div>
           <div class="value" id="stat-proses">0</div>
           <div class="stat-footer">Menunggu verifikasi</div>
         </div>
-        <div class="stat-card success">
+        <div class="stat-card success" data-filter="disetujui">
           <div class="stat-header"><div class="label">Disetujui</div><span>✅</span></div>
           <div class="value" id="stat-setuju">0</div>
           <div class="stat-footer">Izin diterima</div>
         </div>
-        <div class="stat-card danger">
+        <div class="stat-card danger" data-filter="ditolak">
           <div class="stat-header"><div class="label">Ditolak</div><span>❌</span></div>
           <div class="value" id="stat-tolak">0</div>
           <div class="stat-footer">Tidak disetujui</div>
@@ -157,8 +144,23 @@
       </div>
 
       <div class="panel">
+        <div class="panel-head">
+          <h2 style="margin:0;">Pengajuan Terbaru</h2>
+          <a href="riwayat.html" class="hint">Lihat semua riwayat &rarr;</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Kode Tiket</th><th>Jenis Izin</th><th>Durasi</th><th>Status</th></tr>
+            </thead>
+            <tbody id="recent-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
         <h2>Ringkasan Alur Perizinan Otomatis</h2>
-        <p class="text-sm text-muted">Sistem akan secara otomatis menentukan alur persetujuan berdasarkan durasi ketidakhadiran yang diajukan:</p>
+        <p class="text-sm text-muted">Sistem akan secara otomatis menentukan alur persetujuan berdasarkan durasi ketidakhadiran yang dihitung dari selisih tanggal dan jam mulai &ndash; selesai (tepat 24 jam = 1 hari):</p>
         <div class="rule-box my-2">
           <ul>
             <li><strong>&lt; 1 Hari:</strong> Mahasiswa &rarr; Dosen &rarr; Admin Jurusan</li>
@@ -167,64 +169,18 @@
           </ul>
         </div>
       </div>
+
+      <div class="panel">
+        <h2>Data Demo</h2>
+        <p class="text-sm text-muted">Pengajuan dan notifikasi pada role Mahasiswa disimpan di browser ini (localStorage) dan tidak terhubung dengan role lain.</p>
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-reset-demo">Reset Data Demo</button>
+      </div>
     </div>
     <div class="app-footer">Prototype statis &middot; SIPIKA &middot; Kelompok 3 &middot; D4 TRPL 2B</div>
   </div>
 </div>
 
-<script>
-  function initData() {
-    if (!localStorage.getItem('sipika_data')) {
-      const defaultData = [
-        { kode: 'SPK-2026-001', jenis: 'Sakit', tgl: '22/09/2026', durasi: '= 1 Hari', status: 'Menunggu Admin Jurusan', bg: 'warning', alur: 'Dosen (✓) → Kajur (✓) → Admin (⏳)' },
-        { kode: 'SPK-2026-002', jenis: 'Izin Keluarga', tgl: '13/09/2026', durasi: '> 1 Hari', status: 'Disetujui', bg: 'success', alur: 'Dosen (✓) → Kajur (✓) → BAAK (✓) → Admin (✓)' },
-        { kode: 'SPK-2026-003', jenis: 'Izin Pulang Cepat', tgl: '18/09/2026', durasi: '< 1 Hari', status: 'Menunggu Admin Jurusan', bg: 'warning', alur: 'Dosen (✓) → Admin (⏳)' }
-      ];
-      localStorage.setItem('sipika_data', JSON.stringify(defaultData));
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    initData();
-    const data = JSON.parse(localStorage.getItem('sipika_data')) || [];
-    
-    // Update Statistik
-    document.getElementById('stat-total').innerText = data.length;
-    document.getElementById('stat-proses').innerText = data.filter(i => i.status.includes('Menunggu') || i.status.includes('Proses')).length;
-    document.getElementById('stat-setuju').innerText = data.filter(i => i.status === 'Disetujui').length;
-    document.getElementById('stat-tolak').innerText = data.filter(i => i.status === 'Ditolak').length;
-
-    // Feedback User Alert
-    if (sessionStorage.getItem('flash_msg')) {
-      document.getElementById('feedback-banner').innerHTML = `
-        <div style="background-color: #d1fae5; color: #065f46; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #10b981; display: flex; justify-content: space-between; align-items: center;">
-          <span>📌 <strong>Berhasil!</strong> ${sessionStorage.getItem('flash_msg')}</span>
-          <button onclick="this.parentElement.remove()" style="background:none; border:none; color:#065f46; font-weight:bold; cursor:pointer;">✕</button>
-        </div>
-      `;
-      sessionStorage.removeItem('flash_msg');
-    }
-
-    // Toggle Dropdown Notifikasi
-    const notifBtn = document.getElementById('notifBtn');
-    const notifDropdown = document.getElementById('notifDropdown');
-    const markReadBtn = document.getElementById('markReadBtn');
-    const notifBadge = document.getElementById('notifBadge');
-
-    notifBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      notifDropdown.classList.toggle('show');
-    });
-
-    document.addEventListener('click', () => {
-      notifDropdown.classList.remove('show');
-    });
-
-    markReadBtn.addEventListener('click', () => {
-      document.querySelectorAll('.notif-item.unread').forEach(el => el.classList.remove('unread'));
-      notifBadge.style.display = 'none';
-    });
-  });
-</script>
+<script src="../assets/js/common.js"></script>
+<script src="../assets/js/mahasiswa.js"></script>
 </body>
 </html>

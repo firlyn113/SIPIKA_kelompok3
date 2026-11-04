@@ -23,11 +23,13 @@
     .notif-item:hover { background-color: #f9fafb; }
     .notif-item.unread { background-color: #f0fdf4; font-weight: 500; }
 
-    .badge-warning { background-color: #fef3c7; color: #92400e; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
-    .badge-success { background-color: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+    .toolbar .search { flex: 1 1 240px; }
+    .toolbar .kategori { flex: 0 1 200px; }
+    .timeline .tdot.idle { background: var(--border); color: var(--muted); }
   </style>
 </head>
-<body>
+<body data-page="riwayat">
 <div class="app">
   <div class="scrim"></div>
   <aside class="sidebar">
@@ -44,7 +46,7 @@
       <li><a href="pengajuan.html"><span class="icon">➕</span> Ajukan Izin</a></li>
       <li><a href="riwayat.html" class="active"><span class="icon">📜</span> Riwayat Pengajuan</a></li>
       <hr class="nav-divider">
-      <li><a href="#"><span class="icon">👤</span> Profil</a></li>
+      <li><a href="#" id="link-profil"><span class="icon">👤</span> Profil</a></li>
       <li><a href="../index.html"><span class="icon">↩</span> Logout</a></li>
     </ul>
   </aside>
@@ -58,18 +60,14 @@
       <div class="topbar-right">
         <div class="notif-wrapper">
           <div class="notif-bell" id="notifBtn" title="Notifikasi Baru">
-            🔔 <span class="notif-badge" id="notifBadge">2</span>
+            🔔 <span class="notif-badge" id="notifBadge">0</span>
           </div>
           <div class="notif-dropdown" id="notifDropdown">
             <div class="notif-header">
               <span>Pemberitahuan</span>
               <small style="color: #2563eb; cursor: pointer;" id="markReadBtn">Tandai Dibaca</small>
             </div>
-            <ul class="notif-list">
-              <li class="notif-item unread">
-                <div><strong>SPK-2026-001</strong> telah disetujui oleh Dosen.</div>
-              </li>
-            </ul>
+            <ul class="notif-list"></ul>
           </div>
         </div>
         <div class="crumb">Firly Nurrohman</div>
@@ -82,7 +80,19 @@
 
       <div class="panel">
         <h2>Riwayat Pengajuan Perizinan</h2>
-        
+
+        <div class="toolbar">
+          <input type="text" id="filter-search" class="search" placeholder="Cari kode tiket, jenis izin, atau status..." aria-label="Cari pengajuan" autocomplete="off">
+          <select id="filter-kategori" class="kategori" aria-label="Filter kategori durasi">
+            <option value="">Semua durasi</option>
+            <option value="< 1 Hari">&lt; 1 Hari</option>
+            <option value="= 1 Hari">= 1 Hari</option>
+            <option value="> 1 Hari">&gt; 1 Hari</option>
+          </select>
+        </div>
+        <div class="filter-row" id="filter-chips"></div>
+        <p class="hint" id="hasil-info" style="margin-bottom: 8px;"></p>
+
         <div class="table-wrap">
           <table>
             <thead>
@@ -94,10 +104,11 @@
                 <th>Durasi</th>
                 <th>Status Terakhir</th>
                 <th>Progres Tahap</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody id="table-body">
-              <!-- Render Otomatis -->
+              <!-- Diisi otomatis oleh mahasiswa.js -->
             </tbody>
           </table>
         </div>
@@ -105,34 +116,13 @@
 
       <div class="panel">
         <h2>Pelacakan Status Pengajuan Terkini</h2>
-        <p class="hint" style="margin-bottom: 16px;">Alur approval sequential perizinan ketidakhadiran aktif.</p>
-        
-        <div class="stepper">
-          <div class="step completed">
-            <div class="line"></div>
-            <div class="dot">&#10003;</div>
-            <div class="label">Mahasiswa</div>
-            <div class="sub">Mengajukan</div>
-          </div>
-          <div class="step completed">
-            <div class="line"></div>
-            <div class="dot">&#10003;</div>
-            <div class="label">Dosen</div>
-            <div class="sub">Disetujui</div>
-          </div>
-          <div class="step completed">
-            <div class="line"></div>
-            <div class="dot">&#10003;</div>
-            <div class="label">Ketua Jurusan / Sekjur</div>
-            <div class="sub">Disetujui</div>
-          </div>
-          <div class="step pending">
-            <div class="line"></div>
-            <div class="dot">&hellip;</div>
-            <div class="label">Admin Jurusan</div>
-            <div class="sub">Menunggu Pengarsipan</div>
-          </div>
+        <p class="hint" style="margin-bottom: 12px;">Pilih pengajuan untuk melihat posisi tahap validasinya.</p>
+        <div class="select-demo">
+          <label for="lacak-select">Pengajuan</label>
+          <select id="lacak-select"></select>
         </div>
+        <p class="text-sm" id="lacak-ringkas" style="margin-bottom: 8px;"></p>
+        <div id="lacak-stepper"></div>
       </div>
 
     </div>
@@ -140,47 +130,7 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // FEEDBACK USER: Banner Alert Sukses saat dialihkan dari Form
-    const msg = sessionStorage.getItem('flash_msg');
-    if (msg) {
-      document.getElementById('alert-container').innerHTML = `
-        <div style="background-color: #d1fae5; color: #065f46; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #10b981; display: flex; justify-content: space-between; align-items: center;">
-          <span>✅ <strong>Pengajuan Berhasil Ditambahkan!</strong> ${msg}</span>
-          <button onclick="this.parentElement.remove()" style="background:none; border:none; color:#065f46; font-weight:bold; cursor:pointer;">✕</button>
-        </div>
-      `;
-      sessionStorage.removeItem('flash_msg');
-    }
-
-    // FEEDBACK USER: Rendering Data atau Empty State jika Kosong
-    const data = JSON.parse(localStorage.getItem('sipika_data')) || [];
-    const tbody = document.getElementById('table-body');
-
-    if (data.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 24px; color: #6b7280;">Belum ada riwayat pengajuan izin.</td></tr>`;
-      return;
-    }
-
-    tbody.innerHTML = data.map((item, index) => `
-      <tr>
-        <td>${index + 1}</td>
-        <td><strong>${item.kode}</strong></td>
-        <td>${item.jenis}</td>
-        <td>${item.tgl}</td>
-        <td>${item.durasi}</td>
-        <td><span class="badge badge-${item.bg}">${item.status}</span></td>
-        <td style="font-size: 0.85rem; color: #4b5563;">${item.alur}</td>
-      </tr>
-    `).join('');
-
-    // Notifikasi
-    const notifBtn = document.getElementById('notifBtn');
-    const notifDropdown = document.getElementById('notifDropdown');
-    notifBtn.addEventListener('click', (e) => { e.stopPropagation(); notifDropdown.classList.toggle('show'); });
-    document.addEventListener('click', () => { notifDropdown.classList.remove('show'); });
-  });
-</script>
+<script src="../assets/js/common.js"></script>
+<script src="../assets/js/mahasiswa.js"></script>
 </body>
 </html>
